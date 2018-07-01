@@ -1,3 +1,4 @@
-import MyName from "./MyName";
+import FormDay from "./FormDay";
+import InputFood from "./InputFood";
 
-export { MyName };
+export { FormDay, InputFood };

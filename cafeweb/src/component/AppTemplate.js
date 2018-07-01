@@ -1,10 +1,10 @@
 //두가지 화면을 화면에 레이아웃 해주는역활
-import React from 'react';
+import React from "react";
 
-const AppTemplate = ({input}) => {
+const AppTemplate = ({ domitory }) => {
   return (
     <div className="app-template">
-      <div className="input">{input}</div>
+      <div className="domitory">{domitory}</div>
     </div>
   );
 };

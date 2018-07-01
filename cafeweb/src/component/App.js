@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
-import InputContainer from 'container/InputContainer';
-import AppTemplate from './AppTemplate';
+import React, { Component } from "react";
+import DomitoryContainer from "container/DomitoryContainer";
+import AppTemplate from "./AppTemplate";
 
 class App extends Component {
   render() {
-    return (
-      <AppTemplate
-        input={<InputContainer />}
-      />
-    );
+    return <AppTemplate domitory={<DomitoryContainer />} />;
   }
 }
 
