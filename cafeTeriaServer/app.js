@@ -4,13 +4,15 @@ const express = require("express"),
   create = require("./routes/create"),
   read = require("./routes/read"),
   upDate = require("./routes/upDate"),
-  deleterepo = require("./routes/delete");
+  deleterepo = require("./routes/delete"),
+  cors = require('cors');
 
 var app = express(),
   router = express.Router();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extneded: false }));
+app.use(cors());
 
 /*
 app.use('/create',create);
