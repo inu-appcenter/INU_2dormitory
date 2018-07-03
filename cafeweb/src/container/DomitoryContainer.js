@@ -51,7 +51,30 @@ class DomitoryContainer extends Component {
   };
 
   subMitHandle = event => {
-    axios.post("http://localhost:3300/read").then(res => {
+    event.preventDefault();
+    /*const {dateArray }=this.props
+    const sendArray = [];
+    var setQuery="";
+    const data = dateArray.map(Sdate => (
+      setQuery= {
+        stdDate : Sdate,
+        weekDay : "example",
+        cafe1 : [
+          {
+            MENU : "what the hell",
+            TITLE: "A코너",
+            order:"0"
+          }
+        ]
+      },
+      sendArray.push(setQuery)
+    ));*/
+
+    const testData = {
+      test : 3
+    }
+    axios.post("http://localhost:3300/read"
+    ).then(res => {
       console.log(res);
       console.log(res.data);
     });
@@ -60,24 +83,24 @@ class DomitoryContainer extends Component {
   render() {
     const { startDateHandleChange, endDateHandleChange, handleSubmit } = this;
     const { startDateValue, endDateValue, subDate, dateArray } = this.props;
-    const MapToHeadComponent = dateArray.map(Adate => <FormDay date={Adate} />);
+    const MapToHeadComponent = dateArray.map(Adate => <FormDay date={Adate} key={Adate} />);
     const MapToFormComponentBA = dateArray.map(Bdate => (
-      <InputFood date="BreakA" key={Bdate} />
+      <InputFood date="BreakA" key={Bdate+"BreakA"} />
     ));
     const MapToFormComponentBB = dateArray.map(Bdate => (
-      <InputFood date="BreakB" key={Bdate} />
+      <InputFood date="BreakB" key={Bdate+"BreakB"} />
     ));
     const MapToFormComponentLA = dateArray.map(Bdate => (
-      <InputFood date="LunchA" key={Bdate} />
+      <InputFood date="LunchA" key={Bdate+"LunchA"} />
     ));
     const MapToFormComponentLB = dateArray.map(Bdate => (
-      <InputFood date="LunchB" key={Bdate} />
+      <InputFood date="LunchB" key={Bdate+"LunchB"} />
     ));
     const MapToFormComponentDA = dateArray.map(Bdate => (
-      <InputFood date="DinnerA" key={Bdate} />
+      <InputFood date="DinnerA" key={Bdate+"DinnerA"} />
     ));
     const MapToFormComponentDB = dateArray.map(Bdate => (
-      <InputFood date="DinnerB" key={Bdate} />
+      <InputFood date="DinnerB" key={Bdate+"DinnerB"} />
     ));
     return (
       <div>
@@ -96,7 +119,7 @@ class DomitoryContainer extends Component {
           min={startDateValue}
         />
         <form onSubmit={this.subMitHandle}>
-          <table border="1">
+          <table border="1" name="sendForm">
             <tbody>
               <tr>
                 <th colSpan="2" />
