@@ -52,8 +52,12 @@ class DomitoryContainer extends Component {
 
   subMitHandle = event => {
     event.preventDefault();
-    /*const {dateArray }=this.props
-    const sendArray = [];
+
+    const {dateArray }=this.props
+    //const test = event.state.a
+    const b = "2018-07-04BreakA"
+    console.log(event.target[b].value);
+    /*const sendArray = [];
     var setQuery="";
     const data = dateArray.map(Sdate => (
       setQuery= {
@@ -73,7 +77,7 @@ class DomitoryContainer extends Component {
     const testData = {
       test : 3
     }
-    axios.post("http://localhost:3300/read"
+    axios.post("http://localhost:3300/read",testData
     ).then(res => {
       console.log(res);
       console.log(res.data);
@@ -85,22 +89,22 @@ class DomitoryContainer extends Component {
     const { startDateValue, endDateValue, subDate, dateArray } = this.props;
     const MapToHeadComponent = dateArray.map(Adate => <FormDay date={Adate} key={Adate} />);
     const MapToFormComponentBA = dateArray.map(Bdate => (
-      <InputFood date="BreakA" key={Bdate+"BreakA"} />
+      <InputFood date="BreakA" key={Bdate+"BreakA"} name={Bdate+"BreakA"}/>
     ));
     const MapToFormComponentBB = dateArray.map(Bdate => (
-      <InputFood date="BreakB" key={Bdate+"BreakB"} />
+      <InputFood date="BreakB" key={Bdate+"BreakB"} name={Bdate+"BreakB"}/>
     ));
     const MapToFormComponentLA = dateArray.map(Bdate => (
-      <InputFood date="LunchA" key={Bdate+"LunchA"} />
+      <InputFood date="LunchA" key={Bdate+"LunchA"} name={Bdate+"LunchA"}/>
     ));
     const MapToFormComponentLB = dateArray.map(Bdate => (
-      <InputFood date="LunchB" key={Bdate+"LunchB"} />
+      <InputFood date="LunchB" key={Bdate+"LunchB"} name={Bdate+"LunchB"}/>
     ));
     const MapToFormComponentDA = dateArray.map(Bdate => (
-      <InputFood date="DinnerA" key={Bdate+"DinnerA"} />
+      <InputFood date="DinnerA" key={Bdate+"DinnerA"} name={Bdate+"DinnerA"}/>
     ));
     const MapToFormComponentDB = dateArray.map(Bdate => (
-      <InputFood date="DinnerB" key={Bdate+"DinnerB"} />
+      <InputFood date="DinnerB" key={Bdate+"DinnerB"} name={Bdate+"DinnerB"}/>
     ));
     return (
       <div>
