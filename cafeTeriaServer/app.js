@@ -5,7 +5,8 @@ const express = require("express"),
   read = require("./routes/read"),
   upDate = require("./routes/upDate"),
   deleterepo = require("./routes/delete"),
-  cors = require('cors');
+  cors = require('cors'),
+  mongoose = require('mongoose');
 
 var app = express(),
   router = express.Router();
@@ -13,6 +14,18 @@ var app = express(),
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extneded: false }));
 app.use(cors());
+
+var db = mongoose.connection;
+db.on('error',console.error);
+db.once('open',function(){
+  //connected db
+  console.log('connected to mongo server');
+});
+
+mongoose.connect('mongodb://localhost/testDomitory');
+
+
+
 
 /*
 app.use('/create',create);

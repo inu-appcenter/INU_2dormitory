@@ -64,111 +64,71 @@ class DomitoryContainer extends Component {
         sat = dateArray[5],
         sun = dateArray[6];
     const sendArray = {
-      [mon]: [{
-        "MENU": event.target.moba.value,
-        "TITLE": "아침",
-        "order": "0"
+      day: {
+        "MONDAY" : mon,
+        "TUEDAY" : tue,
+        "WENDAY" : wen,
+        "THUDAY" : thu,
+        "FRIDAY" : fri,
+        "SATDAY" : sat,
+        "SUNDAY" : sun
       },
-      {
-        "MENU": event.target.mola.value,
-        "TITLE": "점심",
-        "order": "1"
+      monday: {
+        "MOBA" : event.target.moba.value,
+        "MOBB" : event.target.mobb.value,
+        "MOLA" : event.target.mola.value,
+        "MOLB" : event.target.molb.value,
+        "MODA" : event.target.moda.value,
+        "MODB" : event.target.modb.value
       },
-      {
-        "MENU": event.target.moda.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }],
-      [tue]: [{
-        "MENU": event.target.tuba.value,
-        "TITLE": "아침",
-        "order": "0"
+      tueday: {
+        "TUBA" : event.target.tuba.value,
+        "TUBB" : event.target.tubb.value,
+        "TULA" : event.target.tula.value,
+        "TULB" : event.target.tulb.value,
+        "TUDA" : event.target.tuda.value,
+        "TUDB" : event.target.tudb.value
       },
-      {
-        "MENU": event.target.tula.value,
-        "TITLE": "점심",
-        "order": "1"
+      wenday: {
+        "WEBA" : event.target.weba.value,
+        "WEBB" : event.target.webb.value,
+        "WELA" : event.target.wela.value,
+        "WELB" : event.target.welb.value,
+        "WEDA" : event.target.weda.value,
+        "WEDB" : event.target.wedb.value
       },
-      {
-        "MENU": event.target.tuda.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }],
-      [wen]: [{
-        "MENU": event.target.weba.value,
-        "TITLE": "아침",
-        "order": "0"
+      thuday: {
+        "THBA" : event.target.thba.value,
+        "THBB" : event.target.thbb.value,
+        "THLA" : event.target.thla.value,
+        "THLB" : event.target.thlb.value,
+        "THDA" : event.target.thda.value,
+        "THDB" : event.target.thdb.value
       },
-      {
-        "MENU": event.target.wela.value,
-        "TITLE": "점심",
-        "order": "1"
+      firday: {
+        "FRBA" : event.target.frba.value,
+        "FRBB" : event.target.frbb.value,
+        "FRLA" : event.target.frla.value,
+        "FRLB" : event.target.frlb.value,
+        "FRDA" : event.target.frda.value,
+        "FRDB" : event.target.frdb.value
       },
-      {
-        "MENU": event.target.weda.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }],
-      [thu]: [{
-        "MENU": event.target.thba.value,
-        "TITLE": "아침",
-        "order": "0"
+      satday: {
+        "SABA" : event.target.saba.value,
+        "SABB" : event.target.sabb.value,
+        "SALA" : event.target.sala.value,
+        "SALB" : event.target.salb.value,
+        "SADA" : event.target.sada.value,
+        "SADB" : event.target.sadb.value
       },
-      {
-        "MENU": event.target.thla.value,
-        "TITLE": "점심",
-        "order": "1"
+      sunday: {
+        "SUBA" : event.target.suba.value,
+        "SUBB" : event.target.subb.value,
+        "SULA" : event.target.sula.value,
+        "SULB" : event.target.sulb.value,
+        "SUDA" : event.target.suda.value,
+        "SUDB" : event.target.sudb.value
       },
-      {
-        "MENU": event.target.thda.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }],
-      [fri]: [{
-        "MENU": event.target.frba.value,
-        "TITLE": "아침",
-        "order": "0"
-      },
-      {
-        "MENU": event.target.frla.value,
-        "TITLE": "점심",
-        "order": "1"
-      },
-      {
-        "MENU": event.target.frda.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }],
-      [sat]: [{
-        "MENU": event.target.saba.value,
-        "TITLE": "아침",
-        "order": "0"
-      },
-      {
-        "MENU": event.target.sala.value,
-        "TITLE": "점심",
-        "order": "1"
-      },
-      {
-        "MENU": event.target.sada.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }],
-      [sun]: [{
-        "MENU": event.target.suba.value,
-        "TITLE": "아침",
-        "order": "0"
-      },
-      {
-        "MENU": event.target.sula.value,
-        "TITLE": "점심",
-        "order": "1"
-      },
-      {
-        "MENU": event.target.suda.value,
-        "TITLE": "저녁",
-        "order": "2"
-      }]
     };
     console.log(sendArray);
       
