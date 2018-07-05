@@ -15,30 +15,121 @@ export const subDateHandle = createAction(SUBDATEHANDLE);
 export const dateArrayHandle = createAction(DATEARRAYHANDLE, text => text);
 
 var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
-var yyyy = today.getFullYear();
+var setMonDay= "",
+    setTueDay="",
+    setWenDay="",
+    setThuDay="",
+    setFriDay="",
+    setSatDay="",
+    setSunDay = "";
+var monday = 1;
+while (today.getDay() != monday){
+  today.setDate(today.getDate() -1);
+}
+var ddm = today.getDate();
+var mmm = today.getMonth() + 1; //January is 0!
+var yyyym = today.getFullYear();
 
-if (dd < 10) {
-  dd = "0" + dd;
+today.setDate(ddm+1);
+
+var ddtu = today.getDate();
+var mmtu = today.getMonth()+1;
+var yyyytu = today.getFullYear();
+
+today.setDate(ddtu+1);
+
+var ddwe = today.getDate();
+var mmwe = today.getMonth()+1;
+var yyyywe = today.getFullYear();
+
+today.setDate(ddwe+1);
+
+var ddth = today.getDate();
+var mmth = today.getMonth()+1;
+var yyyyth = today.getFullYear();
+
+today.setDate(ddth+1);
+
+var ddfr = today.getDate();
+var mmfr = today.getMonth()+1;
+var yyyyfr = today.getFullYear();
+
+today.setDate(ddfr+1);
+
+var ddsa = today.getDate();
+var mmsa = today.getMonth()+1;
+var yyyysa = today.getFullYear();
+
+today.setDate(ddsa+1);
+
+var ddsu = today.getDate();
+var mmsu = today.getMonth()+1;
+var yyyysu = today.getFullYear();
+
+if (ddm < 10) {
+  ddm = "0" + ddm;
+}
+if(ddtu<10){
+  ddtu = "0" + ddtu;
+}
+if (ddwe < 10) {
+  ddwe = "0" + ddwe;
+}
+if (ddth < 10) {
+  ddth = "0" + ddth;
+}
+if (ddfr < 10) {
+  ddfr = "0" + ddfr;
+}
+if (ddsa < 10) {
+  ddsa = "0" + ddsa;
+}
+if (ddsu < 10) {
+  ddsu = "0" + ddsu;
 }
 
-if (mm < 10) {
-  mm = "0" + mm;
+if (mmm < 10) {
+  mmm = "0" + mmm;
+}
+if(mmtu <10) {
+  mmtu = "0" + mmtu;
+}
+if(mmwe <10) {
+  mmwe = "0" + mmwe;
+}
+if(mmth <10) {
+  mmth = "0" + mmth;
+}
+if(mmfr <10) {
+  mmfr = "0" + mmfr;
+}
+if(mmsa <10) {
+  mmsa = "0" + mmsa;
+}
+if(mmsu <10) {
+  mmsu = "0" + mmsu;
 }
 
-today = yyyy + "-" + mm + "-" + dd;
+
+
+setMonDay = yyyym + "-" + mmm + "-" + ddm;
+setTueDay=yyyytu + "-" + mmtu + "-" + ddtu;
+setWenDay=yyyywe + "-" + mmwe + "-" + ddwe;
+setThuDay=yyyyth + "-" + mmth + "-" + ddth;
+setFriDay=yyyyfr + "-" + mmfr + "-" + mmfr;
+setSatDay=yyyysa + "-" + mmsa + "-" + ddsa;
+setSunDay = yyyysu + "-" + mmsu + "-" + ddsu;
 
 let startDateValue = "";
 let endDateValue = "";
 
 //모듈의 초기상태 정의
 const initialState = Record({
-  startDateValue: today,
-  endDateValue: today,
+  startDateValue: setMonDay,
+  endDateValue: setSunDay,
   subDate: 0,
   inputDate: " ",
-  dateArray: [today]
+  dateArray: [setMonDay,setTueDay,setWenDay,setThuDay,setFriDay,setSatDay,setSunDay]
 })();
 
 const domitoryRecord = Record({
