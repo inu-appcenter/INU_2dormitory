@@ -56,11 +56,14 @@ class DomitoryContainer extends Component {
     const {dateArray }=this.props
     //const test = event.state.a
     const b = "2018-07-04BreakA"
-    console.log(event.target[b].value);
-    /*const sendArray = [];
+    const c = "2018-07-05BreakA"
+    //console.log(event.target[b].value);
+    console.log(event.target.a.value);
+    console.log(event.target.b.value);
+    const sendArray = [];
     var setQuery="";
     const data = dateArray.map(Sdate => (
-      setQuery= {
+      /*setQuery= {
         stdDate : Sdate,
         weekDay : "example",
         cafe1 : [
@@ -71,8 +74,9 @@ class DomitoryContainer extends Component {
           }
         ]
       },
-      sendArray.push(setQuery)
-    ));*/
+      sendArray.push(setQuery)*/
+      console.log(Sdate)
+    ));
 
     const testData = {
       test : 3
@@ -129,10 +133,15 @@ class DomitoryContainer extends Component {
                 <th colSpan="2" />
                 {MapToHeadComponent}
               </tr>
-              <tr>
+              <tr name="a">
                 <td rowSpan="2">조식</td>
                 <td>A</td>
-                {MapToFormComponentBA}
+                <td >
+          <textarea name = "a"/>
+        </td>
+        <td >
+          <textarea name = "b"/>
+        </td>
               </tr>
               <tr>
                 <td>B</td>

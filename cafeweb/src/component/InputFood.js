@@ -5,7 +5,7 @@ class InputFood extends Component {
     const {date,name} = this.props;
     return (
       <React.Fragment>
-        <td id="BreakA">
+        <td >
           <textarea name = {name}/>
         </td>
       </React.Fragment>
