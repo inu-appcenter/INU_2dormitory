@@ -8,54 +8,265 @@ import { bindActionCreators, createStore } from "redux";
 import { DomitoryActions } from "store/actionCreators";
 
 class DomitoryContainer extends Component {
-  /*startDateHandleChange = event => {
-    DomitoryActions.startDateHandleChange(event.target.value);
-    const { endDateValue, dateArray } = this.props;
-    var endDate = new Date(endDateValue);
-    var startDate = new Date(event.target.value);
-    var dayDate = startDate.getDate();
+  nowWeekHandle = event => {
+    const {dateArray} = this.props;
     dateArray.length = 0;
-    const subDate = (endDate - startDate) / (24 * 3600 * 1000);
-    for (var i = 0; i <= subDate; i++) {
-      startDate = new Date(event.target.value);
-      startDate.setDate(dayDate + i);
-      var yearDate = startDate.getFullYear();
-      var monthDate = startDate.getMonth() + 1;
-      var secondDayDate = startDate.getDate();
-      var correctDate = yearDate + "-" + monthDate + "-" + secondDayDate;
-      dateArray.push(correctDate);
+    var today = new Date();
+    var setMonDay= "",
+        setTueDay="",
+        setWenDay="",
+        setThuDay="",
+        setFriDay="",
+        setSatDay="",
+        setSunDay = "";
+    var monday = 1;
+    while (today.getDay() != monday){
+      today.setDate(today.getDate() -1);
     }
-    DomitoryActions.subDateHandle(subDate);
-    DomitoryActions.dateArrayHandle(dateArray);
-  };
+    var ddm = today.getDate();
+    var mmm = today.getMonth() + 1; //January is 0!
+    var yyyym = today.getFullYear();
 
-  endDateHandleChange = event => {
-    DomitoryActions.endDateHandleChange(event.target.value);
-    const { startDateValue, dateArray } = this.props;
-    var endDate = new Date(event.target.value);
-    var startDate = new Date(startDateValue);
-    var dayDate = startDate.getDate();
-    dateArray.length = 0;
-    const subDate = (endDate - startDate) / (24 * 3600 * 1000);
-    for (var i = 0; i <= subDate; i++) {
-      startDate = new Date(startDateValue);
-      startDate.setDate(dayDate + i);
-      var yearDate = startDate.getFullYear();
-      var monthDate = startDate.getMonth() + 1;
-      var secondDayDate = startDate.getDate();
-      var correctDate = yearDate + "-" + monthDate + "-" + secondDayDate;
-      dateArray.push(correctDate);
+    today.setDate(ddm+1);
+
+    var ddtu = today.getDate();
+    var mmtu = today.getMonth()+1;
+    var yyyytu = today.getFullYear();
+
+    today.setDate(ddtu+1);
+
+    var ddwe = today.getDate();
+    var mmwe = today.getMonth()+1;
+    var yyyywe = today.getFullYear();
+
+    today.setDate(ddwe+1);
+
+    var ddth = today.getDate();
+    var mmth = today.getMonth()+1;
+    var yyyyth = today.getFullYear();
+
+    today.setDate(ddth+1);
+
+    var ddfr = today.getDate();
+    var mmfr = today.getMonth()+1;
+    var yyyyfr = today.getFullYear();
+
+    today.setDate(ddfr+1);
+
+    var ddsa = today.getDate();
+    var mmsa = today.getMonth()+1;
+    var yyyysa = today.getFullYear();
+
+    today.setDate(ddsa+1);
+
+    var ddsu = today.getDate();
+    var mmsu = today.getMonth()+1;
+    var yyyysu = today.getFullYear();
+
+    if (ddm < 10) {
+      ddm = "0" + ddm;
     }
-    DomitoryActions.subDateHandle(subDate);
-    DomitoryActions.dateArrayHandle(dateArray);
-  };*/
+    if(ddtu<10){
+      ddtu = "0" + ddtu;
+    }
+    if (ddwe < 10) {
+      ddwe = "0" + ddwe;
+    }
+    if (ddth < 10) {
+      ddth = "0" + ddth;
+    }
+    if (ddfr < 10) {
+      ddfr = "0" + ddfr;
+    }
+    if (ddsa < 10) {
+      ddsa = "0" + ddsa;
+    }
+    if (ddsu < 10) {
+      ddsu = "0" + ddsu;
+    }
+
+    if (mmm < 10) {
+      mmm = "0" + mmm;
+    }
+    if(mmtu <10) {
+      mmtu = "0" + mmtu;
+    }
+    if(mmwe <10) {
+      mmwe = "0" + mmwe;
+    }
+    if(mmth <10) {
+      mmth = "0" + mmth;
+    }
+    if(mmfr <10) {
+      mmfr = "0" + mmfr;
+    }
+    if(mmsa <10) {
+      mmsa = "0" + mmsa;
+    }
+    if(mmsu <10) {
+      mmsu = "0" + mmsu;
+    }
+
+
+
+    setMonDay = yyyym + "-" + mmm + "-" + ddm;
+    setTueDay=yyyytu + "-" + mmtu + "-" + ddtu;
+    setWenDay=yyyywe + "-" + mmwe + "-" + ddwe;
+    setThuDay=yyyyth + "-" + mmth + "-" + ddth;
+    setFriDay=yyyyfr + "-" + mmfr + "-" + ddfr;
+    setSatDay=yyyysa + "-" + mmsa + "-" + ddsa;
+    setSunDay = yyyysu + "-" + mmsu + "-" + ddsu;
+
+    dateArray.push(setMonDay);
+    dateArray.push(setTueDay);
+    dateArray.push(setWenDay);
+    dateArray.push(setThuDay);
+    dateArray.push(setFriDay);
+    dateArray.push(setSatDay);
+    dateArray.push(setSunDay);
+    DomitoryActions.startDateHandleChange(setMonDay);
+    DomitoryActions.endDateHandleChange(setSunDay);
+    DomitoryActions.nextWeekHandle(dateArray);
+
+  }
+
+  nextWeekHandle = event => {
+    const {dateArray} = this.props;
+    let monDate = dateArray[0],
+        tueDate = dateArray[1],
+        wenDate = dateArray[2],
+        thuDate = dateArray[3],
+        friDate = dateArray[4],
+        satDate = dateArray[5],
+        sunDate = dateArray[6];
+
+
+    dateArray.length = 0;
+
+
+        var nextMonDate = new Date(monDate);
+        var pastMon = nextMonDate.getDate();
+        nextMonDate.setDate(pastMon +7);
+        var monYear = nextMonDate.getFullYear();
+        var monMonth = nextMonDate.getMonth() +1;
+        var monNextDate = nextMonDate.getDate();
+        if (monMonth < 10) {
+          monMonth = "0" + monMonth;
+        }
+        if(monNextDate < 10) {
+          monNextDate = "0"+monNextDate;
+        }
+        var correctMon = monYear + "-" + monMonth + "-" + monNextDate;
+
+
+        var nextTueDate = new Date(tueDate);
+        var pastTue = nextTueDate.getDate();
+        nextTueDate.setDate(pastTue +7);
+        var tueYear = nextTueDate.getFullYear();
+        var tueMonth = nextTueDate.getMonth() +1;
+        var tueNextDate = nextTueDate.getDate();
+        if (tueMonth < 10) {
+          tueMonth = "0" + tueMonth;
+        }
+        if(tueNextDate < 10) {
+          tueNextDate = "0"+tueNextDate;
+        }
+        var correctTue = tueYear + "-" + tueMonth + "-" + tueNextDate;
+        
+
+
+        var nextWenDate = new Date(wenDate);
+        var pastWen = nextWenDate.getDate();
+        nextWenDate.setDate(pastWen +7);
+        var wenYear = nextWenDate.getFullYear();
+        var wenMonth = nextWenDate.getMonth() +1;
+        var wenNextDate = nextWenDate.getDate();
+        if (wenMonth < 10) {
+          wenMonth = "0" + wenMonth;
+        }
+        if(wenNextDate < 10) {
+          wenNextDate = "0"+wenNextDate;
+        }
+        var correctWen = wenYear + "-" + wenMonth + "-" + wenNextDate;
+
+
+        var nextThuDate = new Date(thuDate);
+        var pastThu = nextThuDate.getDate();
+        nextThuDate.setDate(pastThu +7);
+        var thuYear = nextThuDate.getFullYear();
+        var thuMonth = nextThuDate.getMonth() +1;
+        var thuNextDate = nextThuDate.getDate();
+        if (thuMonth < 10) {
+          thuMonth = "0" + thuMonth;
+        }
+        if(thuNextDate < 10) {
+          thuNextDate = "0"+thuNextDate;
+        }
+        var correctThu = thuYear + "-" + thuMonth + "-" + thuNextDate;
+
+
+        var nextFriDate = new Date(friDate);
+        var pastFri = nextFriDate.getDate();
+        nextFriDate.setDate(pastFri +7);
+        var friYear = nextFriDate.getFullYear();
+        var friMonth = nextFriDate.getMonth() +1;
+        var friNextDate = nextFriDate.getDate();
+        if (friMonth < 10) {
+          friMonth = "0" + friMonth;
+        }
+        if(friNextDate < 10) {
+          friNextDate = "0"+friNextDate;
+        }
+        var correctFri = friYear + "-" + friMonth + "-" + friNextDate;
+
+
+        var nextSatDate = new Date(satDate);
+        var pastSat = nextSatDate.getDate();
+        nextSatDate.setDate(pastSat +7);
+        var satYear = nextSatDate.getFullYear();
+        var satMonth = nextSatDate.getMonth() +1;
+        var satNextDate = nextSatDate.getDate();
+        if (satMonth < 10) {
+          satMonth = "0" + satMonth;
+        }
+        if(satNextDate < 10) {
+          satNextDate = "0"+satNextDate;
+        }
+        var correctSat = satYear + "-" + satMonth + "-" + satNextDate;
+
+
+        var nextSunDate = new Date(sunDate);
+        var pastSun = nextSunDate.getDate();
+        nextSunDate.setDate(pastSun +7);
+        var sunYear = nextSunDate.getFullYear();
+        var sunMonth = nextSunDate.getMonth() +1;
+        var sunNextDate = nextSunDate.getDate();
+        if (sunMonth < 10) {
+          sunMonth = "0" + sunMonth;
+        }
+        if(sunNextDate < 10) {
+          sunNextDate = "0"+sunNextDate;
+        }
+        var correctSun = sunYear + "-" + sunMonth + "-" + sunNextDate;
+        
+
+        dateArray.push(correctMon);
+        dateArray.push(correctTue);
+        dateArray.push(correctWen);
+        dateArray.push(correctThu);
+        dateArray.push(correctFri);
+        dateArray.push(correctSat);
+        dateArray.push(correctSun);
+        DomitoryActions.startDateHandleChange(correctMon);
+        DomitoryActions.endDateHandleChange(correctSun);
+        DomitoryActions.nextWeekHandle(dateArray);
+
+  }
 
   subMitHandle = event => {
     event.preventDefault();
 
     const {dateArray }=this.props
-    console.log(event.target.moba.value);
-    console.log(event.target.mobb.value);
     const mon = dateArray[0],
         tue = dateArray[1],
         wen = dateArray[2],
@@ -130,7 +341,6 @@ class DomitoryContainer extends Component {
         "SUDB" : event.target.sudb.value
       },
     };
-    console.log(sendArray);
       
 
     const testData = {
@@ -144,13 +354,13 @@ class DomitoryContainer extends Component {
   };
 
   render() {
-    const { startDateHandleChange, endDateHandleChange, handleSubmit } = this;
-    const { startDateValue, endDateValue, subDate, dateArray } = this.props;
+    const { startDateHandleChange, endDateHandleChange,nextWeekHandle,nowWeekHandle } = this;
+    const { startDateValue, endDateValue, dateArray } = this.props;
     const MapToHeadComponent = dateArray.map(Adate => <FormDay date={Adate} key={Adate} />);
     return (
       <div>
         <h1>음식은 띄어쓰기로 구분해주세요</h1>
-        <button>전주 작성하기</button>
+        <button onClick={nowWeekHandle}>이번 주 작성하기</button>
         <input
           type="date"
           value={startDateValue}
@@ -166,7 +376,7 @@ class DomitoryContainer extends Component {
           min={startDateValue}
           readOnly
         />
-        <button>다음주 작성하기</button>
+        <button onClick={nextWeekHandle}>다음주 작성하기</button>
         <form onSubmit={this.subMitHandle}>
           <table border="1" name="sendForm">
             <tbody>

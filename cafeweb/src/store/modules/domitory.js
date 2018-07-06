@@ -6,6 +6,7 @@ const STARTDATEHANDLECHANGE = "domitory/STARTDATEHANDLECHANGE";
 const ENDDATEHANDLECHANGE = "domitory/ENDDATEHANDLECHANGE";
 const SUBDATEHANDLE = "domitory/SUBDATEHANDLE";
 const DATEARRAYHANDLE = "domitory/DATEARRAYHANDLE";
+const NEXTWEEKHANDLE = "domitory/NEXTWEEKHANDLE";
 
 //액션 생성 함수 만듦
 //이 함수들은 나중에 다른파일에서 불러와야하기 때문에 export시켜 줍니다
@@ -13,6 +14,7 @@ export const startDateHandleChange = createAction(STARTDATEHANDLECHANGE);
 export const endDateHandleChange = createAction(ENDDATEHANDLECHANGE);
 export const subDateHandle = createAction(SUBDATEHANDLE);
 export const dateArrayHandle = createAction(DATEARRAYHANDLE, text => text);
+export const nextWeekHandle = createAction(NEXTWEEKHANDLE);
 
 var today = new Date();
 var setMonDay= "",
@@ -116,7 +118,7 @@ setMonDay = yyyym + "-" + mmm + "-" + ddm;
 setTueDay=yyyytu + "-" + mmtu + "-" + ddtu;
 setWenDay=yyyywe + "-" + mmwe + "-" + ddwe;
 setThuDay=yyyyth + "-" + mmth + "-" + ddth;
-setFriDay=yyyyfr + "-" + mmfr + "-" + mmfr;
+setFriDay=yyyyfr + "-" + mmfr + "-" + ddfr;
 setSatDay=yyyysa + "-" + mmsa + "-" + ddsa;
 setSunDay = yyyysu + "-" + mmsu + "-" + ddsu;
 
@@ -143,7 +145,8 @@ export default handleActions(
     [ENDDATEHANDLECHANGE]: (state, action) =>
       state.set("endDateValue", action.payload),
     [SUBDATEHANDLE]: (state, action) => state.set("subDate", action.payload),
-    [DATEARRAYHANDLE]: (state, action) => state.set("dateArray", action.payload)
+    [DATEARRAYHANDLE]: (state, action) => state.set("dateArray", action.payload),
+    [NEXTWEEKHANDLE] : (state,action) => state.set("dateArray",action.payload)
   },
   initialState
 );
