@@ -67,7 +67,8 @@ router.post("/", function(req, res, next) {
   sundayForm.DAMENU = req.body.sunday.SUDA;
   sundayForm.DBMENU = req.body.sunday.SUDB;
 
-  console.log(satdayForm);
+  console.log(req.body);
+
   form.find({}, function(err,ans) {
     if(err) throw err;
     if(ans[0] == undefined) {
@@ -346,5 +347,56 @@ router.get("/", function(req, res, next) {
     }
   }).where("DATE").equals(today)
 });
+
+router.post('/all',async function(req,res,next) {
+  let iArray = [0,1,2,3,4,5,6,7];
+  let i = 0;
+
+  iArray.map(function(row){ 
+    if(row<7){
+      console.log(row);
+    form.find({},function(err,ans){
+      if(err) throw err;
+      else{
+        if(ans[0] === undefined){
+          var nullForm = new form();
+          nullForm.BAMENU = ""
+          nullForm.BBMENU = ""
+          nullForm.LAMENU = ""
+          nullForm.LBMENU = ""
+          nullForm.DAMENU = ""
+          nullForm.DBMENU = ""
+          nullForm.DATE = req.body[row]
+          nullForm.save(function(err){
+            if(err) {
+              console.error(err);
+              res.json({result:0});
+              return;
+            }
+            console.log("채워짐"+req.body[row])
+            i=row
+            return;
+          })
+        }
+      }
+    }).where("DATE").equals(req.body[row])}
+    else{
+      setTimeout(() => {
+        form.find({$or:[{"DATE":req.body[0]},{"DATE":req.body[1]},{"DATE":req.body[2]},{"DATE":req.body[3]},
+      {"DATE":req.body[4]},{"DATE":req.body[5]},{"DATE":req.body[6]}]},function(err,ans) {
+      if(err) throw err;
+      res.setHeader('Content-type','application/json');
+      res.send(ans);
+      res.end();
+      })
+      }, 250);
+      
+    }
+  })
+
+
+
+
+})
 
 module.exports = router;

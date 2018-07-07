@@ -7,6 +7,7 @@ const ENDDATEHANDLECHANGE = "domitory/ENDDATEHANDLECHANGE";
 const SUBDATEHANDLE = "domitory/SUBDATEHANDLE";
 const DATEARRAYHANDLE = "domitory/DATEARRAYHANDLE";
 const NEXTWEEKHANDLE = "domitory/NEXTWEEKHANDLE";
+const UPDATEVALUE = "domitory/UPDATEVALUE";
 
 //액션 생성 함수 만듦
 //이 함수들은 나중에 다른파일에서 불러와야하기 때문에 export시켜 줍니다
@@ -15,6 +16,7 @@ export const endDateHandleChange = createAction(ENDDATEHANDLECHANGE);
 export const subDateHandle = createAction(SUBDATEHANDLE);
 export const dateArrayHandle = createAction(DATEARRAYHANDLE, text => text);
 export const nextWeekHandle = createAction(NEXTWEEKHANDLE);
+export const updateValue = createAction(UPDATEVALUE);
 
 var today = new Date();
 var setMonDay= "",
@@ -124,6 +126,13 @@ setSunDay = yyyysu + "-" + mmsu + "-" + ddsu;
 
 let startDateValue = "";
 let endDateValue = "";
+let moBaVa = "",moBbVa="",moLaVa="",moLbVa="",moDaVa="",moDbVa="",
+tuBaVa = "",tuBbVa="",tuLaVa="",tuLbVa="",tuDaVa="",tuDbVa="",
+weBaVa = "",weBbVa="",weLaVa="",weLbVa="",weDaVa="",weDbVa="",
+thBaVa = "",thBbVa="",thLaVa="",thLbVa="",thDaVa="",thDbVa="",
+frBaVa = "",frBbVa="",frLaVa="",frLbVa="",frDaVa="",frDbVa="",
+saBaVa = "",saBbVa="",saLaVa="",saLbVa="",saDaVa="",saDbVa="",
+suBaVa = "",suBbVa="",suLaVa="",suLbVa="",suDaVa="",suDbVa="";
 
 //모듈의 초기상태 정의
 const initialState = Record({
@@ -131,7 +140,16 @@ const initialState = Record({
   endDateValue: setSunDay,
   subDate: 0,
   inputDate: " ",
-  dateArray: [setMonDay,setTueDay,setWenDay,setThuDay,setFriDay,setSatDay,setSunDay]
+  dateArray: [setMonDay,setTueDay,setWenDay,setThuDay,setFriDay,setSatDay,setSunDay],
+  valueArray : [
+    moBaVa,moBbVa,moLaVa,moLbVa,moDaVa,moDbVa,
+    tuBaVa,tuBbVa,tuLaVa,tuLbVa,tuDaVa,tuDbVa,
+    weBaVa ,weBbVa,weLaVa,weLbVa,weDaVa,weDbVa,
+    thBaVa ,thBbVa,thLaVa,thLbVa,thDaVa,thDbVa,
+    frBaVa ,frBbVa,frLaVa,frLbVa,frDaVa,frDbVa,
+    saBaVa ,saBbVa,saLaVa,saLbVa,saDaVa,saDbVa,
+    suBaVa ,suBbVa,suLaVa,suLbVa,suDaVa,suDbVa
+  ]
 })();
 
 const domitoryRecord = Record({
@@ -146,22 +164,8 @@ export default handleActions(
       state.set("endDateValue", action.payload),
     [SUBDATEHANDLE]: (state, action) => state.set("subDate", action.payload),
     [DATEARRAYHANDLE]: (state, action) => state.set("dateArray", action.payload),
-    [NEXTWEEKHANDLE] : (state,action) => state.set("dateArray",action.payload)
+    [NEXTWEEKHANDLE] : (state,action) => state.set("dateArray",action.payload),
+    [UPDATEVALUE]: (state,action) => state.set("valueArray",action.payload)
   },
   initialState
 );
-/*
-//리듀서 생성후 내보내기
-export default function reducer(state = initalState, action) {
-  //리듀서 함수에서는 액션의 타입에 따라 변화된 상태를 정의하여 반환합니다.
-  // state = initialState 이렇게하면 initialState가 기본 값으로 사용 됩니다.
-  switch (action.type) {
-    case STARTDATEHANDLECHANGE:
-      return { startDateValue: event.target.value };
-    case ENDDATEHANDLECHANGE:
-      return { endDateValue: event.target.value };
-    default:
-      return state;
-  }
-}
-*/

@@ -8,6 +8,16 @@ import { bindActionCreators } from "redux";
 import { DomitoryActions } from "store/actionCreators";
 
 class DomitoryContainer extends Component {
+  state = {
+    moBaVa : "",moBbVa : "",moLaVa : "",moLbVa : "",moDaVa : "",moDbVa : "",
+    tuBaVa : "",tuBbVa : "",tuLaVa : "",tuLbVa : "",tuDaVa : "",tuDbVa : "",
+    weBaVa : "",weBbVa : "",weLaVa : "",weLbVa : "",weDaVa : "",weDbVa : "",
+    thBaVa : "",thBbVa : "",thLaVa : "",thLbVa : "",thDaVa : "",thDbVa : "",
+    frBaVa : "",frBbVa : "",frLaVa : "",frLbVa : "",frDaVa : "",frDbVa : "",
+    saBaVa : "",saBbVa : "",saLaVa : "",saLbVa : "",saDaVa : "",saDbVa : "",
+    suBaVa : "",suBbVa : "",suLaVa : "",suLbVa : "",suDaVa : "",suDbVa : ""
+
+  }
   nowWeekHandle = event => {
     const {dateArray} = this.props;
     dateArray.length = 0;
@@ -127,6 +137,39 @@ class DomitoryContainer extends Component {
     DomitoryActions.startDateHandleChange(setMonDay);
     DomitoryActions.endDateHandleChange(setSunDay);
     DomitoryActions.nextWeekHandle(dateArray);
+    axios.post("http://localhost:3300/read/all",dateArray
+    ).then(res => {
+    console.log(res.data);
+
+    this.setState({
+      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
+      moLaVa : res.data[0].LAMENU, moLbVa : res.data[0].LBMENU,
+      moDaVa : res.data[0].DAMENU, moDbVa : res.data[0].DBMENU,
+      /////////////////////////////////////////////////////////
+      tuBaVa : res.data[1].BAMENU, tuBbVa : res.data[1].BBMENU,
+      tuLaVa : res.data[1].LAMENU, tuLbVa : res.data[1].LBMENU,
+      tuDaVa : res.data[1].DAMENU, tuDbVa : res.data[1].DBMENU,
+      /////////////////////////////////////////////////////////
+      weBaVa : res.data[2].BAMENU, weBbVa : res.data[2].BBMENU,
+      weLaVa : res.data[2].LAMENU, weLbVa : res.data[2].LBMENU,
+      weDaVa : res.data[2].DAMENU, weDbVa : res.data[2].DBMENU,
+      /////////////////////////////////////////////////////////
+      thBaVa : res.data[3].BAMENU, thBbVa : res.data[3].BBMENU,
+      thLaVa : res.data[3].LAMENU, thLbVa : res.data[3].LBMENU,
+      thDaVa : res.data[3].DAMENU, thDbVa : res.data[3].DBMENU,
+      /////////////////////////////////////////////////////////
+      frBaVa : res.data[4].BAMENU, frBbVa : res.data[4].BBMENU,
+      frLaVa : res.data[4].LAMENU, frLbVa : res.data[4].LBMENU,
+      frDaVa : res.data[4].DAMENU, frDbVa : res.data[4].DBMENU,
+      /////////////////////////////////////////////////////////
+      saBaVa : res.data[5].BAMENU, saBbVa : res.data[5].BBMENU,
+      saLaVa : res.data[5].LAMENU, saLbVa : res.data[5].LBMENU,
+      saDaVa : res.data[5].DAMENU, saDbVa : res.data[5].DBMENU,
+      /////////////////////////////////////////////////////////
+      suBaVa : res.data[6].BAMENU, suBbVa : res.data[6].BBMENU,
+      suLaVa : res.data[6].LAMENU, suLbVa : res.data[6].LBMENU,
+      suDaVa : res.data[6].DAMENU, suDbVa : res.data[6].DBMENU});
+    });
 
   }
 
@@ -260,11 +303,47 @@ class DomitoryContainer extends Component {
         DomitoryActions.startDateHandleChange(correctMon);
         DomitoryActions.endDateHandleChange(correctSun);
         DomitoryActions.nextWeekHandle(dateArray);
+        
+        
+        
+        axios.post("http://localhost:3300/read/all",dateArray
+    ).then(res => {
+    console.log(res.data);
+
+    this.setState({
+      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
+      moLaVa : res.data[0].LAMENU, moLbVa : res.data[0].LBMENU,
+      moDaVa : res.data[0].DAMENU, moDbVa : res.data[0].DBMENU,
+      /////////////////////////////////////////////////////////
+      tuBaVa : res.data[1].BAMENU, tuBbVa : res.data[1].BBMENU,
+      tuLaVa : res.data[1].LAMENU, tuLbVa : res.data[1].LBMENU,
+      tuDaVa : res.data[1].DAMENU, tuDbVa : res.data[1].DBMENU,
+      /////////////////////////////////////////////////////////
+      weBaVa : res.data[2].BAMENU, weBbVa : res.data[2].BBMENU,
+      weLaVa : res.data[2].LAMENU, weLbVa : res.data[2].LBMENU,
+      weDaVa : res.data[2].DAMENU, weDbVa : res.data[2].DBMENU,
+      /////////////////////////////////////////////////////////
+      thBaVa : res.data[3].BAMENU, thBbVa : res.data[3].BBMENU,
+      thLaVa : res.data[3].LAMENU, thLbVa : res.data[3].LBMENU,
+      thDaVa : res.data[3].DAMENU, thDbVa : res.data[3].DBMENU,
+      /////////////////////////////////////////////////////////
+      frBaVa : res.data[4].BAMENU, frBbVa : res.data[4].BBMENU,
+      frLaVa : res.data[4].LAMENU, frLbVa : res.data[4].LBMENU,
+      frDaVa : res.data[4].DAMENU, frDbVa : res.data[4].DBMENU,
+      /////////////////////////////////////////////////////////
+      saBaVa : res.data[5].BAMENU, saBbVa : res.data[5].BBMENU,
+      saLaVa : res.data[5].LAMENU, saLbVa : res.data[5].LBMENU,
+      saDaVa : res.data[5].DAMENU, saDbVa : res.data[5].DBMENU,
+      /////////////////////////////////////////////////////////
+      suBaVa : res.data[6].BAMENU, suBbVa : res.data[6].BBMENU,
+      suLaVa : res.data[6].LAMENU, suLbVa : res.data[6].LBMENU,
+      suDaVa : res.data[6].DAMENU, suDbVa : res.data[6].DBMENU});
+    });
 
   }
 
   subMitHandle = event => {
-    event.preventDefault();
+    
 
     const {dateArray }=this.props
     const mon = dateArray[0],
@@ -348,11 +427,188 @@ class DomitoryContainer extends Component {
       console.log(res.data);
     });
   };
+/////////////////////////////////////////////////////////////////////
+  valueOnChageMoBa = event => {
+    this.setState({moBaVa:event.target.value});
+  }
+  valueOnChageTuBa = event => {
+    this.setState({tuBaVa:event.target.value});
+  }
+  valueOnChageWeBa = event => {
+    this.setState({weBaVa:event.target.value});
+  }
+  valueOnChageThBa = event => {
+    this.setState({thBaVa:event.target.value});
+  }
+  valueOnChageFrBa = event => {
+    this.setState({frBaVa:event.target.value});
+  }
+  valueOnChageSaBa = event => {
+    this.setState({saBaVa:event.target.value});
+  }
+  valueOnChageSuBa = event => {
+    this.setState({suBaVa:event.target.value});
+  }
+/////////////////////////////////////////////////////////////////////
+  valueOnChageMoBb = event => {
+    this.setState({moBbVa:event.target.value});
+  }
+  valueOnChageTuBb = event => {
+    this.setState({tuBbVa:event.target.value});
+  }
+  valueOnChageWeBb = event => {
+    this.setState({weBbVa:event.target.value});
+  }
+  valueOnChageThBb = event => {
+    this.setState({thBbVa:event.target.value});
+  }
+  valueOnChageFrBb = event => {
+    this.setState({frBbVa:event.target.value});
+  }
+  valueOnChageSaBb = event => {
+    this.setState({saBbVa:event.target.value});
+  }
+  valueOnChageSuBb = event => {
+    this.setState({suBbVa:event.target.value});
+  }
+/////////////////////////////////////////////////////////////////////
+  valueOnChageMoLa = event => {
+    this.setState({moLaVa:event.target.value});
+  }
+  valueOnChageTuLa = event => {
+    this.setState({tuLaVa:event.target.value});
+  }
+  valueOnChageWeLa = event => {
+    this.setState({weLaVa:event.target.value});
+  }
+  valueOnChageThLa = event => {
+    this.setState({thLaVa:event.target.value});
+  }
+  valueOnChageFrLa = event => {
+    this.setState({frLaVa:event.target.value});
+  }
+  valueOnChageSaLa = event => {
+    this.setState({saLaVa:event.target.value});
+  }
+  valueOnChageSuLa = event => {
+    this.setState({suLaVa:event.target.value});
+  }
+/////////////////////////////////////////////////////////////////////
+  valueOnChageMoLb = event => {
+    this.setState({moLbVa:event.target.value});
+  }
+  valueOnChageTuLb = event => {
+    this.setState({tuLbVa:event.target.value});
+  }
+  valueOnChageWeLb = event => {
+    this.setState({weLbVa:event.target.value});
+  }
+  valueOnChageThLb = event => {
+    this.setState({thLbVa:event.target.value});
+  }
+  valueOnChageFrLb = event => {
+    this.setState({frLbVa:event.target.value});
+  }
+  valueOnChageSaLb = event => {
+    this.setState({saLbVa:event.target.value});
+  }
+  valueOnChageSuLb = event => {
+    this.setState({suLbVa:event.target.value});
+  }
+/////////////////////////////////////////////////////////////////////
+  valueOnChageMoDa = event => {
+    this.setState({moDaVa:event.target.value});
+  }
+  valueOnChageTuDa = event => {
+    this.setState({tuDaVa:event.target.value});
+  }
+  valueOnChageWeDa = event => {
+    this.setState({weDaVa:event.target.value});
+  }
+  valueOnChageThDa = event => {
+    this.setState({thDaVa:event.target.value});
+  }
+  valueOnChageFrDa = event => {
+    this.setState({frDaVa:event.target.value});
+  }
+  valueOnChageSaDa = event => {
+    this.setState({saDaVa:event.target.value});
+  }
+  valueOnChageSuDa = event => {
+    this.setState({suDaVa:event.target.value});
+  }
+/////////////////////////////////////////////////////////////////////
+  valueOnChageMoDb = event => {
+    this.setState({moDbVa:event.target.value});
+  }
+  valueOnChageTuDb = event => {
+    this.setState({tuDbVa:event.target.value});
+  }
+  valueOnChageWeDb = event => {
+    this.setState({weDbVa:event.target.value});
+  }
+  valueOnChageThDb = event => {
+    this.setState({thDbVa:event.target.value});
+  }
+  valueOnChageFrDb = event => {
+    this.setState({frDbVa:event.target.value});
+  }
+  valueOnChageSaDb = event => {
+    this.setState({saDbVa:event.target.value});
+  }
+  valueOnChageSuDb = event => {
+    this.setState({suDbVa:event.target.value});
+  }
+
+
+  componentDidMount(){
+    const {dateArray} = this.props
+    axios.post("http://localhost:3300/read/all",dateArray
+    ).then(res => {
+    console.log(res.data);
+
+    this.setState({
+      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
+      moLaVa : res.data[0].LAMENU, moLbVa : res.data[0].LBMENU,
+      moDaVa : res.data[0].DAMENU, moDbVa : res.data[0].DBMENU,
+      /////////////////////////////////////////////////////////
+      tuBaVa : res.data[1].BAMENU, tuBbVa : res.data[1].BBMENU,
+      tuLaVa : res.data[1].LAMENU, tuLbVa : res.data[1].LBMENU,
+      tuDaVa : res.data[1].DAMENU, tuDbVa : res.data[1].DBMENU,
+      /////////////////////////////////////////////////////////
+      weBaVa : res.data[2].BAMENU, weBbVa : res.data[2].BBMENU,
+      weLaVa : res.data[2].LAMENU, weLbVa : res.data[2].LBMENU,
+      weDaVa : res.data[2].DAMENU, weDbVa : res.data[2].DBMENU,
+      /////////////////////////////////////////////////////////
+      thBaVa : res.data[3].BAMENU, thBbVa : res.data[3].BBMENU,
+      thLaVa : res.data[3].LAMENU, thLbVa : res.data[3].LBMENU,
+      thDaVa : res.data[3].DAMENU, thDbVa : res.data[3].DBMENU,
+      /////////////////////////////////////////////////////////
+      frBaVa : res.data[4].BAMENU, frBbVa : res.data[4].BBMENU,
+      frLaVa : res.data[4].LAMENU, frLbVa : res.data[4].LBMENU,
+      frDaVa : res.data[4].DAMENU, frDbVa : res.data[4].DBMENU,
+      /////////////////////////////////////////////////////////
+      saBaVa : res.data[5].BAMENU, saBbVa : res.data[5].BBMENU,
+      saLaVa : res.data[5].LAMENU, saLbVa : res.data[5].LBMENU,
+      saDaVa : res.data[5].DAMENU, saDbVa : res.data[5].DBMENU,
+      /////////////////////////////////////////////////////////
+      suBaVa : res.data[6].BAMENU, suBbVa : res.data[6].BBMENU,
+      suLaVa : res.data[6].LAMENU, suLbVa : res.data[6].LBMENU,
+      suDaVa : res.data[6].DAMENU, suDbVa : res.data[6].DBMENU});
+    });
+  }
 
   render() {
-    const { startDateHandleChange, endDateHandleChange,nextWeekHandle,nowWeekHandle } = this;
-    const { startDateValue, endDateValue, dateArray } = this.props;
+    const { startDateHandleChange, endDateHandleChange,nextWeekHandle,nowWeekHandle,
+      valueOnChageMoBa,valueOnChageTuBa,valueOnChageWeBa,valueOnChageThBa,valueOnChageFrBa,valueOnChageSaBa,valueOnChageSuBa,
+      valueOnChageMoBb,valueOnChageTuBb,valueOnChageWeBb,valueOnChageThBb,valueOnChageFrBb,valueOnChageSaBb,valueOnChageSuBb,
+      valueOnChageMoLa,valueOnChageTuLa,valueOnChageWeLa,valueOnChageThLa,valueOnChageFrLa,valueOnChageSaLa,valueOnChageSuLa,
+      valueOnChageMoLb,valueOnChageTuLb,valueOnChageWeLb,valueOnChageThLb,valueOnChageFrLb,valueOnChageSaLb,valueOnChageSuLb,
+      valueOnChageMoDa,valueOnChageTuDa,valueOnChageWeDa,valueOnChageThDa,valueOnChageFrDa,valueOnChageSaDa,valueOnChageSuDa,
+      valueOnChageMoDb,valueOnChageTuDb,valueOnChageWeDb,valueOnChageThDb,valueOnChageFrDb,valueOnChageSaDb,valueOnChageSuDb } = this;
+    const { startDateValue, endDateValue, dateArray, valueArray } = this.props;
     const MapToHeadComponent = dateArray.map(Adate => <FormDay date={Adate} key={Adate} />);
+
     return (
       <div>
         <h1>음식은 띄어쓰기로 구분해주세요</h1>
@@ -394,147 +650,147 @@ class DomitoryContainer extends Component {
                 <td rowSpan="2">조식</td>
                 <td>A</td>
                 <td id="BreakA">
-                  <textarea name="moba" />
+                  <textarea name="moba" onChange={valueOnChageMoBa} value={this.state.moBaVa} />
                 </td>
                 <td id="BreakA">
-                  <textarea name="tuba" />
+                  <textarea name="tuba" onChange={valueOnChageTuBa} value={this.state.tuBaVa}/>
                 </td>
                 <td id="BreakA">
-                  <textarea name="weba" />
+                  <textarea name="weba" onChange={valueOnChageWeBa} value={this.state.weBaVa}/>
                 </td>
                 <td id="BreakA">
-                  <textarea name="thba" />
+                  <textarea name="thba" onChange={valueOnChageThBa} value={this.state.thBaVa}/>
                 </td>
                 <td id="BreakA">
-                  <textarea name="frba" />
+                  <textarea name="frba" onChange={valueOnChageFrBa} value={this.state.frBaVa}/>
                 </td>
                 <td id="BreakA">
-                  <textarea name="saba" />
+                  <textarea name="saba" onChange={valueOnChageSaBa} value={this.state.saBaVa}/>
                 </td>
                 <td id="BreakA">
-                  <textarea name="suba" />
+                  <textarea name="suba" onChange={valueOnChageSuBa} value={this.state.suBaVa}/>
                 </td>
               </tr>
               <tr>
                 <td>B</td>
                 <td id="BreakB">
-                  <textarea name="mobb" />
+                  <textarea name="mobb" onChange={valueOnChageMoBb} value={this.state.moBbVa}/>
                 </td>
                 <td id="BreakB">
-                  <textarea name="tubb" />
+                  <textarea name="tubb" onChange={valueOnChageTuBb} value={this.state.tuBbVa}/>
                 </td>
                 <td id="BreakB">
-                  <textarea name="webb" />
+                  <textarea name="webb" onChange={valueOnChageWeBb} value={this.state.weBbVa}/>
                 </td>
                 <td id="BreakB">
-                  <textarea name="thbb" />
+                  <textarea name="thbb" onChange={valueOnChageThBb} value={this.state.thBbVa}/>
                 </td>
                 <td id="BreakB">
-                  <textarea name="frbb" />
+                  <textarea name="frbb" onChange={valueOnChageFrBb} value={this.state.frBbVa}/>
                 </td>
                 <td id="BreakB">
-                  <textarea name="sabb" />
+                  <textarea name="sabb" onChange={valueOnChageSaBb} value={this.state.saBbVa}/>
                 </td>
                 <td id="BreakB">
-                  <textarea name="subb" />
+                  <textarea name="subb" onChange={valueOnChageSuBb} value={this.state.suBbVa}/>
                 </td>
               </tr>
               <tr>
                 <td rowSpan="2">중식</td>
                 <td>A</td>
                 <td id="LunchA">
-                  <textarea name="mola" />
+                  <textarea name="mola" onChange={valueOnChageMoLa} value={this.state.moLaVa}/>
                 </td>
                 <td id="LunchA">
-                  <textarea name="tula" />
+                  <textarea name="tula" onChange={valueOnChageTuLa} value={this.state.tuLaVa}/>
                 </td>
                 <td id="LunchA">
-                  <textarea name="wela" />
+                  <textarea name="wela" onChange={valueOnChageWeLa} value={this.state.weLaVa}/>
                 </td>
                 <td id="LunchA">
-                  <textarea name="thla" />
+                  <textarea name="thla" onChange={valueOnChageThLa} value={this.state.thLaVa}/>
                 </td>
                 <td id="LunchA">
-                  <textarea name="frla" />
+                  <textarea name="frla" onChange={valueOnChageFrLa} value={this.state.frLaVa}/>
                 </td>
                 <td id="LunchA">
-                  <textarea name="sala" />
+                  <textarea name="sala" onChange={valueOnChageSaLa} value={this.state.saLaVa}/>
                 </td>
                 <td id="LunchA">
-                  <textarea name="sula" />
+                  <textarea name="sula" onChange={valueOnChageSuLa} value={this.state.suLaVa}/>
                 </td>
               </tr>
               <tr>
                 <td>B</td>
                 <td id="LunchB">
-                  <textarea name="molb" />
+                  <textarea name="molb" onChange={valueOnChageMoLb} value={this.state.moLbVa}/>
                 </td>
                 <td id="LunchB">
-                  <textarea name="tulb" />
+                  <textarea name="tulb" onChange={valueOnChageTuLb} value={this.state.tuLbVa}/>
                 </td>
                 <td id="LunchB">
-                  <textarea name="welb" />
+                  <textarea name="welb" onChange={valueOnChageWeLb} value={this.state.weLbVa}/>
                 </td>
                 <td id="LunchB">
-                  <textarea name="thlb" />
+                  <textarea name="thlb" onChange={valueOnChageThLb} value={this.state.thLbVa}/>
                 </td>
                 <td id="LunchB">
-                  <textarea name="frlb" />
+                  <textarea name="frlb" onChange={valueOnChageFrLb} value={this.state.frLbVa}/>
                 </td>
                 <td id="LunchB">
-                  <textarea name="salb" />
+                  <textarea name="salb" onChange={valueOnChageSaLb} value={this.state.saLbVa}/>
                 </td>
                 <td id="LunchB">
-                  <textarea name="sulb" />
+                  <textarea name="sulb" onChange={valueOnChageSuLb} value={this.state.suLbVa}/>
                 </td>
               </tr>
               <tr>
                 <td rowSpan="2">석식</td>
                 <td>A</td>
                 <td id="DinnerA">
-                  <textarea name="moda" />
+                  <textarea name="moda" onChange={valueOnChageMoDa} value={this.state.moDaVa}/>
                 </td>
                 <td id="DinnerA">
-                  <textarea name="tuda" />
+                  <textarea name="tuda" onChange={valueOnChageTuDa} value={this.state.tuDaVa}/>
                 </td>
                 <td id="DinnerA">
-                  <textarea name="weda" />
+                  <textarea name="weda" onChange={valueOnChageWeDa} value={this.state.weDaVa}/>
                 </td>
                 <td id="DinnerA">
-                  <textarea name="thda" />
+                  <textarea name="thda" onChange={valueOnChageThDa} value={this.state.thDaVa}/>
                 </td>
                 <td id="DinnerA">
-                  <textarea name="frda" />
+                  <textarea name="frda" onChange={valueOnChageFrDa} value={this.state.frDaVa}/>
                 </td>
                 <td id="DinnerA">
-                  <textarea name="sada" />
+                  <textarea name="sada" onChange={valueOnChageSaDa} value={this.state.saDaVa}/>
                 </td>
                 <td id="DinnerA">
-                  <textarea name="suda" />
+                  <textarea name="suda" onChange={valueOnChageSuDa} value={this.state.suDaVa}/>
                 </td>
               </tr>
               <tr>
                 <td>B</td>
                 <td id="DinnerB">
-                  <textarea name="modb" />
+                  <textarea name="modb" onChange={valueOnChageMoDb} value={this.state.moDbVa}/>
                 </td>
                 <td id="DinnerB">
-                  <textarea name="tudb" />
+                  <textarea name="tudb" onChange={valueOnChageTuDb} value={this.state.tuDbVa}/>
                 </td>
                 <td id="DinnerB">
-                  <textarea name="wedb" />
+                  <textarea name="wedb" onChange={valueOnChageWeDb} value={this.state.weDbVa}/>
                 </td>
                 <td id="DinnerB">
-                  <textarea name="thdb" />
+                  <textarea name="thdb" onChange={valueOnChageThDb} value={this.state.thDbVa}/>
                 </td>
                 <td id="DinnerB">
-                  <textarea name="frdb" />
+                  <textarea name="frdb" onChange={valueOnChageFrDb} value={this.state.frDbVa}/>
                 </td>
                 <td id="DinnerB">
-                  <textarea name="sadb" />
+                  <textarea name="sadb" onChange={valueOnChageSaDb} value={this.state.saDbVa}/>
                 </td>
                 <td id="DinnerB">
-                  <textarea name="sudb" />
+                  <textarea name="sudb" onChange={valueOnChageSuDb} value={this.state.suDbVa}/>
                 </td>
               </tr>
             </tbody>
@@ -552,7 +808,8 @@ export default connect(
     startDateValue: domitory.startDateValue,
     endDateValue: domitory.endDateValue,
     subDate: domitory.subDate,
-    dateArray: domitory.dateArray
+    dateArray: domitory.dateArray,
+    valueArray :domitory.valueArray
   }),
   dispatch => ({
     DomitoryActions: bindActionCreators(domitoryAction, dispatch)
