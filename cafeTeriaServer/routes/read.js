@@ -3,25 +3,6 @@ const router = express.Router();
 var form = require('../model/form');
 
 router.post("/", function(req, res, next) {
-  /*var testForm = new form();
-  testForm.DATE = "this is date";
-  testForm.BAMENU = "this is breakAmenu";
-  testForm.BBMENU = "this is breakBmenu";
-  testForm.LAMENU = "this is lunchAmenu";
-  testForm.LBMENU = "this is lunchBmenu";
-  testForm.DAMENU = "this is dinnerAmenu";
-  testForm.DBMENU = "this is dinnerBmenu";
-
-  testForm.save(function(err) {
-    if(err) {
-      console.error(err);
-      res.json({result: 0});
-      return;
-    }
-
-    res.json({result: 1});
-  });*/
-
   var mondayForm = new form();
   var tuedayForm = new form();
   var wendayForm = new form();
@@ -86,64 +67,284 @@ router.post("/", function(req, res, next) {
   sundayForm.DAMENU = req.body.sunday.SUDA;
   sundayForm.DBMENU = req.body.sunday.SUDB;
 
-  mondayForm.save(function(err) {
-    if(err) {
-      console.error(err);
-      res.json({result: 0});
-      return;
-    }
-    tuedayForm.save(function(err) {
-      if(err) {
-        console.error(err);
-        res.json({result: 0});
-        return;
-      }
-      wendayForm.save(function(err) {
+  console.log(satdayForm);
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      mondayForm.save(function(err){
         if(err) {
           console.error(err);
-          res.json({result: 0});
+          res.json({result:0});
           return;
         }
-        thudayForm.save(function(err) {
-          if(err) {
-            console.error(err);
-            res.json({result: 0});
-            return;
-          }
-          fridayForm.save(function(err) {
-            if(err) {
-              console.error(err);
-              res.json({result: 0});
-              return;
-            }
-            satdayForm.save(function(err) {
-              if(err) {
-                console.error(err);
-                res.json({result: 0});
-                return;
-              }
-              sundayForm.save(function(err) {
-                if(err) {
-                  console.error(err);
-                  res.json({result: 0});
-                  return;
-                }
-            
-                res.json({result: 1});
-              });
-            });
-          });
-        });
-      });
-    });
-  });
+        return;
+      })
+    }else{
+      form.update({DATE:mondayForm.DATE},{$set:{BAMENU:mondayForm.BAMENU,
+                                                BBMENU:mondayForm.BBMENU,
+                                                LAMENU:mondayForm.LAMENU,
+                                                LBMENU:mondayForm.LBMENU,
+                                                DAMENU:mondayForm.DAMENU,
+                                                DBMENU:mondayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(mondayForm.DATE)
 
-  console.log(req.body);
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      tuedayForm.save(function(err){
+        if(err) {
+          console.error(err);
+          res.json({result:0});
+          return;
+        }
+        return;
+      })
+    }else{
+      form.update({DATE:tuedayForm.DATE},{$set:{BAMENU:tuedayForm.BAMENU,
+        BBMENU:tuedayForm.BBMENU,
+        LAMENU:tuedayForm.LAMENU,
+        LBMENU:tuedayForm.LBMENU,
+        DAMENU:tuedayForm.DAMENU,
+        DBMENU:tuedayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(tuedayForm.DATE)
+
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      wendayForm.save(function(err){
+        if(err) {
+          console.error(err);
+          res.json({result:0});
+          return;
+        }
+        return;
+      })
+    }else{
+      form.update({DATE:wendayForm.DATE},{$set:{BAMENU:wendayForm.BAMENU,
+        BBMENU:wendayForm.BBMENU,
+        LAMENU:wendayForm.LAMENU,
+        LBMENU:wendayForm.LBMENU,
+        DAMENU:wendayForm.DAMENU,
+        DBMENU:wendayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(wendayForm.DATE)
+
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      thudayForm.save(function(err){
+        if(err) {
+          console.error(err);
+          res.json({result:0});
+          return;
+        }
+        return;
+      })
+    }else{
+      form.update({DATE:thudayForm.DATE},{$set:{BAMENU:thudayForm.BAMENU,
+        BBMENU:thudayForm.BBMENU,
+        LAMENU:thudayForm.LAMENU,
+        LBMENU:thudayForm.LBMENU,
+        DAMENU:thudayForm.DAMENU,
+        DBMENU:thudayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(thudayForm.DATE)
+
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      fridayForm.save(function(err){
+        if(err) {
+          console.error(err);
+          res.json({result:0});
+          return;
+        }
+        return;
+      })
+    }else{
+      form.update({DATE:fridayForm.DATE},{$set:{BAMENU:fridayForm.BAMENU,
+        BBMENU:fridayForm.BBMENU,
+        LAMENU:fridayForm.LAMENU,
+        LBMENU:fridayForm.LBMENU,
+        DAMENU:fridayForm.DAMENU,
+        DBMENU:fridayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(fridayForm.DATE)
+  
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      satdayForm.save(function(err){
+        if(err) {
+          console.error(err);
+          res.json({result:0});
+          return;
+        }
+        return;
+      })
+    }else{
+      form.update({DATE:satdayForm.DATE},{$set:{BAMENU:satdayForm.BAMENU,
+        BBMENU:satdayForm.BBMENU,
+        LAMENU:satdayForm.LAMENU,
+        LBMENU:satdayForm.LBMENU,
+        DAMENU:satdayForm.DAMENU,
+        DBMENU:satdayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(satdayForm.DATE)
+
+  form.find({}, function(err,ans) {
+    if(err) throw err;
+    if(ans[0] == undefined) {
+      sundayForm.save(function(err){
+        if(err) {
+          console.error(err);
+          res.json({result:0});
+          return;
+        }
+        return;
+      })
+    }else{
+      form.update({DATE:sundayForm.DATE},{$set:{BAMENU:sundayForm.BAMENU,
+        BBMENU:sundayForm.BBMENU,
+        LAMENU:sundayForm.LAMENU,
+        LBMENU:sundayForm.LBMENU,
+        DAMENU:sundayForm.DAMENU,
+        DBMENU:sundayForm.DBMENU}},{multi:true},function(err){
+        if(err) throw err;
+        return;
+      })
+    }
+  }).where("DATE").equals(sundayForm.DATE)
 });
 
 router.get("/", function(req, res, next) {
-  console.log(req.body);
-  res.send(true);
+  let today = new Date(),
+      todayYear = today.getFullYear(),
+      todayMonth = today.getMonth()+1,//월은 0부터시작합니다
+      todayDate = today.getDate();
+  if(todayMonth <10 ) {
+    todayMonth = "0"+todayMonth;
+  }
+  if(todayDate <10 ) {
+    todayDate = "0"+todayDate;
+  }
+  today = todayYear + "-" + todayMonth + "-" + todayDate;
+
+  form.find({}, function(err, ans) {
+    if(err) throw err;
+
+    var sendJsonArray = [];
+    if (ans[0] == undefined) {
+      sendJsonArray = [
+        {
+          MENU: "",
+          TITLE: "점심",
+          order: "0"
+         },
+         {
+          MENU: "",
+          TITLE: "저녁",
+          order: "1"
+         }
+      ]
+      
+      res.setHeader('Content-type', 'application/json');
+      res.send(sendJsonArray);
+      res.end();
+    }else{
+
+    var i =0;
+    var orderNum = 0; 
+    
+    while (i != 5){
+      if(ans[0].BAMENU != ""){
+        let breakA = {
+          MENU : ans[0].BAMENU,
+          TITLE : "아침",
+          order : orderNum
+        }
+        sendJsonArray.push(breakA)
+        i++
+        orderNum++
+      }
+      if(ans[0].BBMENU != ""){
+        let breakB = {
+          MENU : ans[0].BBMENU,
+          TITLE : "아침",
+          order : orderNum
+        }
+        sendJsonArray.push(breakB)
+        i++
+        orderNum++
+      }
+      if(ans[0].LAMENU != ""){
+        let lunchA = {
+          MENU : ans[0].LAMENU,
+          TITLE : "점심",
+          order : orderNum
+        }
+        sendJsonArray.push(lunchA)
+        i++
+        orderNum++
+      }
+      if(ans[0].LBMENU != ""){
+        let lunchB = {
+          MENU : ans[0].LBMENU,
+          TITLE : "점심",
+          order : orderNum
+        }
+        sendJsonArray.push(lunchB)
+        i++
+        orderNum++
+      }
+      if(ans[0].DAMENU != ""){
+        let dinnerA = {
+          MENU : ans[0].DAMENU,
+          TITLE : "저녁",
+          order : orderNum
+        }
+        sendJsonArray.push(dinnerA)
+        i++
+        orderNum++
+      }
+      if(ans[0].DBMENU != ""){
+        let dinnerB = {
+          MENU : ans[0].DBMENU,
+          TITLE : "저녁",
+          order : orderNum
+        }
+        sendJsonArray.push(dinnerB)
+        i=5;
+        orderNum++
+      }else {
+        i=5;
+      }
+    }
+    res.setHeader('Content-type', 'application/json');
+    res.send(sendJsonArray);
+    res.end();
+    }
+  }).where("DATE").equals(today)
 });
 
 module.exports = router;

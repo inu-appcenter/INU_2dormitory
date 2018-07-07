@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Domitory, FormDay, InputFood } from "component";
+import { FormDay} from "component";
 import { connect } from "react-redux";
 import * as domitoryAction from "store/modules/domitory";
 import axios from "axios";
 
-import { bindActionCreators, createStore } from "redux";
+import { bindActionCreators } from "redux";
 import { DomitoryActions } from "store/actionCreators";
 
 class DomitoryContainer extends Component {
@@ -342,10 +342,6 @@ class DomitoryContainer extends Component {
       },
     };
       
-
-    const testData = {
-      test : 3
-    }
     axios.post("http://localhost:3300/read",sendArray
     ).then(res => {
       console.log(res);
