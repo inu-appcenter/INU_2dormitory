@@ -137,7 +137,7 @@ class DomitoryContainer extends Component {
     DomitoryActions.startDateHandleChange(setMonDay);
     DomitoryActions.endDateHandleChange(setSunDay);
     DomitoryActions.nextWeekHandle(dateArray);
-    axios.post("http://localhost:3300/read/all",dateArray
+    axios.post("http://localhost:5630/read/all",dateArray
     ).then(res => {
 
     this.setState({
@@ -305,7 +305,7 @@ class DomitoryContainer extends Component {
         
         
         
-        axios.post("http://localhost:3300/read/all",dateArray
+        axios.post("http://localhost:5630/read/all",dateArray
     ).then(res => {
     console.log(res.data);
 
@@ -421,7 +421,7 @@ class DomitoryContainer extends Component {
       },
     };
       
-    axios.post("http://localhost:3300/read",sendArray
+    axios.post("http://localhost:5630/read",sendArray
     ).then(res => {
       console.log(res);
       console.log(res.data);
@@ -563,7 +563,7 @@ class DomitoryContainer extends Component {
 
   componentDidMount(){
     const {dateArray} = this.props
-    axios.post("http://localhost:3300/read/all",dateArray
+    axios.post("http://localhost:5630/read/all",dateArray
     ).then(res => {
     console.log(res.data);
 
