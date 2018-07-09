@@ -67,8 +67,7 @@ router.post("/", function(req, res, next) {
   sundayForm.DAMENU = req.body.sunday.SUDA;
   sundayForm.DBMENU = req.body.sunday.SUDB;
 
-  console.log(req.body);
-
+  if(req.body.pass === "1q2w3e4r5t"){
   form.find({}, function(err,ans) {
     if(err) throw err;
     if(ans[0] == undefined) {
@@ -236,6 +235,7 @@ router.post("/", function(req, res, next) {
       })
     }
   }).where("DATE").equals(sundayForm.DATE)
+}
 });
 
 router.get("/", function(req, res, next) {
@@ -354,7 +354,6 @@ router.post('/all',async function(req,res,next) {
 
   iArray.map(function(row){ 
     if(row<7){
-      console.log(row);
     form.find({},function(err,ans){
       if(err) throw err;
       else{

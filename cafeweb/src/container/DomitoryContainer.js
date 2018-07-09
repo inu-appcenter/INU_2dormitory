@@ -139,7 +139,6 @@ class DomitoryContainer extends Component {
     DomitoryActions.nextWeekHandle(dateArray);
     axios.post("http://localhost:3300/read/all",dateArray
     ).then(res => {
-    console.log(res.data);
 
     this.setState({
       moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
@@ -354,6 +353,7 @@ class DomitoryContainer extends Component {
         sat = dateArray[5],
         sun = dateArray[6];
     const sendArray = {
+      pass: event.target.pass.value,
       day: {
         "MONDAY" : mon,
         "TUEDAY" : tue,
@@ -610,194 +610,204 @@ class DomitoryContainer extends Component {
     const MapToHeadComponent = dateArray.map(Adate => <FormDay date={Adate} key={Adate} />);
 
     return (
-      <div>
-        <h1>음식은 띄어쓰기로 구분해주세요</h1>
-        <button onClick={nowWeekHandle}>이번 주 작성하기</button>
-        <input
-          type="date"
-          value={startDateValue}
-          onChange={startDateHandleChange}
-          min={startDateValue}
-          readOnly
-        />{" "}
-        ~{" "}
-        <input
-          type="date" 
-          value={endDateValue}
-          onChange={endDateHandleChange}
-          min={startDateValue}
-          readOnly
-        />
-        <button onClick={nextWeekHandle}>다음주 작성하기</button>
-        <form onSubmit={this.subMitHandle}>
-          <table border="1" name="sendForm">
-            <tbody>
-              <tr>
-                <th colSpan="2"/>
-                <th>월요일</th>
-                <th>화요일</th>
-                <th>수요일</th>
-                <th>목요일</th>
-                <th>금요일</th>
-                <th>토요일</th>
-                <th>일요일</th>
-              </tr>
-              <tr>
-                <th colSpan="2" />
-                {MapToHeadComponent}
-              </tr>
-              <tr>
-                <td rowSpan="2">조식</td>
-                <td>A</td>
-                <td id="BreakA">
-                  <textarea name="moba" onChange={valueOnChageMoBa} value={this.state.moBaVa} />
-                </td>
-                <td id="BreakA">
-                  <textarea name="tuba" onChange={valueOnChageTuBa} value={this.state.tuBaVa}/>
-                </td>
-                <td id="BreakA">
-                  <textarea name="weba" onChange={valueOnChageWeBa} value={this.state.weBaVa}/>
-                </td>
-                <td id="BreakA">
-                  <textarea name="thba" onChange={valueOnChageThBa} value={this.state.thBaVa}/>
-                </td>
-                <td id="BreakA">
-                  <textarea name="frba" onChange={valueOnChageFrBa} value={this.state.frBaVa}/>
-                </td>
-                <td id="BreakA">
-                  <textarea name="saba" onChange={valueOnChageSaBa} value={this.state.saBaVa}/>
-                </td>
-                <td id="BreakA">
-                  <textarea name="suba" onChange={valueOnChageSuBa} value={this.state.suBaVa}/>
-                </td>
-              </tr>
-              <tr>
-                <td>B</td>
-                <td id="BreakB">
-                  <textarea name="mobb" onChange={valueOnChageMoBb} value={this.state.moBbVa}/>
-                </td>
-                <td id="BreakB">
-                  <textarea name="tubb" onChange={valueOnChageTuBb} value={this.state.tuBbVa}/>
-                </td>
-                <td id="BreakB">
-                  <textarea name="webb" onChange={valueOnChageWeBb} value={this.state.weBbVa}/>
-                </td>
-                <td id="BreakB">
-                  <textarea name="thbb" onChange={valueOnChageThBb} value={this.state.thBbVa}/>
-                </td>
-                <td id="BreakB">
-                  <textarea name="frbb" onChange={valueOnChageFrBb} value={this.state.frBbVa}/>
-                </td>
-                <td id="BreakB">
-                  <textarea name="sabb" onChange={valueOnChageSaBb} value={this.state.saBbVa}/>
-                </td>
-                <td id="BreakB">
-                  <textarea name="subb" onChange={valueOnChageSuBb} value={this.state.suBbVa}/>
-                </td>
-              </tr>
-              <tr>
-                <td rowSpan="2">중식</td>
-                <td>A</td>
-                <td id="LunchA">
-                  <textarea name="mola" onChange={valueOnChageMoLa} value={this.state.moLaVa}/>
-                </td>
-                <td id="LunchA">
-                  <textarea name="tula" onChange={valueOnChageTuLa} value={this.state.tuLaVa}/>
-                </td>
-                <td id="LunchA">
-                  <textarea name="wela" onChange={valueOnChageWeLa} value={this.state.weLaVa}/>
-                </td>
-                <td id="LunchA">
-                  <textarea name="thla" onChange={valueOnChageThLa} value={this.state.thLaVa}/>
-                </td>
-                <td id="LunchA">
-                  <textarea name="frla" onChange={valueOnChageFrLa} value={this.state.frLaVa}/>
-                </td>
-                <td id="LunchA">
-                  <textarea name="sala" onChange={valueOnChageSaLa} value={this.state.saLaVa}/>
-                </td>
-                <td id="LunchA">
-                  <textarea name="sula" onChange={valueOnChageSuLa} value={this.state.suLaVa}/>
-                </td>
-              </tr>
-              <tr>
-                <td>B</td>
-                <td id="LunchB">
-                  <textarea name="molb" onChange={valueOnChageMoLb} value={this.state.moLbVa}/>
-                </td>
-                <td id="LunchB">
-                  <textarea name="tulb" onChange={valueOnChageTuLb} value={this.state.tuLbVa}/>
-                </td>
-                <td id="LunchB">
-                  <textarea name="welb" onChange={valueOnChageWeLb} value={this.state.weLbVa}/>
-                </td>
-                <td id="LunchB">
-                  <textarea name="thlb" onChange={valueOnChageThLb} value={this.state.thLbVa}/>
-                </td>
-                <td id="LunchB">
-                  <textarea name="frlb" onChange={valueOnChageFrLb} value={this.state.frLbVa}/>
-                </td>
-                <td id="LunchB">
-                  <textarea name="salb" onChange={valueOnChageSaLb} value={this.state.saLbVa}/>
-                </td>
-                <td id="LunchB">
-                  <textarea name="sulb" onChange={valueOnChageSuLb} value={this.state.suLbVa}/>
-                </td>
-              </tr>
-              <tr>
-                <td rowSpan="2">석식</td>
-                <td>A</td>
-                <td id="DinnerA">
-                  <textarea name="moda" onChange={valueOnChageMoDa} value={this.state.moDaVa}/>
-                </td>
-                <td id="DinnerA">
-                  <textarea name="tuda" onChange={valueOnChageTuDa} value={this.state.tuDaVa}/>
-                </td>
-                <td id="DinnerA">
-                  <textarea name="weda" onChange={valueOnChageWeDa} value={this.state.weDaVa}/>
-                </td>
-                <td id="DinnerA">
-                  <textarea name="thda" onChange={valueOnChageThDa} value={this.state.thDaVa}/>
-                </td>
-                <td id="DinnerA">
-                  <textarea name="frda" onChange={valueOnChageFrDa} value={this.state.frDaVa}/>
-                </td>
-                <td id="DinnerA">
-                  <textarea name="sada" onChange={valueOnChageSaDa} value={this.state.saDaVa}/>
-                </td>
-                <td id="DinnerA">
-                  <textarea name="suda" onChange={valueOnChageSuDa} value={this.state.suDaVa}/>
-                </td>
-              </tr>
-              <tr>
-                <td>B</td>
-                <td id="DinnerB">
-                  <textarea name="modb" onChange={valueOnChageMoDb} value={this.state.moDbVa}/>
-                </td>
-                <td id="DinnerB">
-                  <textarea name="tudb" onChange={valueOnChageTuDb} value={this.state.tuDbVa}/>
-                </td>
-                <td id="DinnerB">
-                  <textarea name="wedb" onChange={valueOnChageWeDb} value={this.state.weDbVa}/>
-                </td>
-                <td id="DinnerB">
-                  <textarea name="thdb" onChange={valueOnChageThDb} value={this.state.thDbVa}/>
-                </td>
-                <td id="DinnerB">
-                  <textarea name="frdb" onChange={valueOnChageFrDb} value={this.state.frDbVa}/>
-                </td>
-                <td id="DinnerB">
-                  <textarea name="sadb" onChange={valueOnChageSaDb} value={this.state.saDbVa}/>
-                </td>
-                <td id="DinnerB">
-                  <textarea name="sudb" onChange={valueOnChageSuDb} value={this.state.suDbVa}/>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <button type="submit">저장</button>
-        </form>
+      <div className="container">
+        
+          <h2>음식은 띄어쓰기로 구분해주세요</h2>
+          <div className="row">
+          <button className="col s2 waves-effect waves-teal btn-flat"onClick={nowWeekHandle}>이번 주 작성하기</button>
+          <input
+            className="col s3"
+            type="date"
+            value={startDateValue}
+            onChange={startDateHandleChange}
+            min={startDateValue}
+            readOnly
+          />
+          <p className="col s1">~</p>
+          <input
+            className="col s3"
+            type="date" 
+            value={endDateValue}
+            onChange={endDateHandleChange}
+            min={startDateValue}
+            readOnly
+          />
+          <button className="col s2 waves-effect waves-teal btn-flat" onClick={nextWeekHandle}>다음주 작성하기</button>
+          </div>
+          <form className="col s12"onSubmit={this.subMitHandle}>
+            <table className="centered"border="1" name="sendForm">
+              <thead>
+                <tr>
+                  <th colSpan="2"/>
+                  <th>월요일</th>
+                  <th>화요일</th>
+                  <th>수요일</th>
+                  <th>목요일</th>
+                  <th>금요일</th>
+                  <th>토요일</th>
+                  <th>일요일</th>
+                </tr>
+                <tr>
+                  <th colSpan="2" />
+                  {MapToHeadComponent}
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td rowSpan="2">조식</td>
+                  <td>A</td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="moba" onChange={valueOnChageMoBa} value={this.state.moBaVa} />
+                  </td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="tuba" onChange={valueOnChageTuBa} value={this.state.tuBaVa}/>
+                  </td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="weba" onChange={valueOnChageWeBa} value={this.state.weBaVa}/>
+                  </td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="thba" onChange={valueOnChageThBa} value={this.state.thBaVa}/>
+                  </td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="frba" onChange={valueOnChageFrBa} value={this.state.frBaVa}/>
+                  </td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="saba" onChange={valueOnChageSaBa} value={this.state.saBaVa}/>
+                  </td>
+                  <td id="BreakA">
+                    <textarea className="materialize-textarea" name="suba" onChange={valueOnChageSuBa} value={this.state.suBaVa}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="mobb" onChange={valueOnChageMoBb} value={this.state.moBbVa}/>
+                  </td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="tubb" onChange={valueOnChageTuBb} value={this.state.tuBbVa}/>
+                  </td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="webb" onChange={valueOnChageWeBb} value={this.state.weBbVa}/>
+                  </td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="thbb" onChange={valueOnChageThBb} value={this.state.thBbVa}/>
+                  </td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="frbb" onChange={valueOnChageFrBb} value={this.state.frBbVa}/>
+                  </td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="sabb" onChange={valueOnChageSaBb} value={this.state.saBbVa}/>
+                  </td>
+                  <td id="BreakB">
+                    <textarea className="materialize-textarea" name="subb" onChange={valueOnChageSuBb} value={this.state.suBbVa}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td rowSpan="2">중식</td>
+                  <td>A</td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="mola" onChange={valueOnChageMoLa} value={this.state.moLaVa}/>
+                  </td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="tula" onChange={valueOnChageTuLa} value={this.state.tuLaVa}/>
+                  </td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="wela" onChange={valueOnChageWeLa} value={this.state.weLaVa}/>
+                  </td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="thla" onChange={valueOnChageThLa} value={this.state.thLaVa}/>
+                  </td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="frla" onChange={valueOnChageFrLa} value={this.state.frLaVa}/>
+                  </td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="sala" onChange={valueOnChageSaLa} value={this.state.saLaVa}/>
+                  </td>
+                  <td id="LunchA">
+                    <textarea className="materialize-textarea" name="sula" onChange={valueOnChageSuLa} value={this.state.suLaVa}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="molb" onChange={valueOnChageMoLb} value={this.state.moLbVa}/>
+                  </td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="tulb" onChange={valueOnChageTuLb} value={this.state.tuLbVa}/>
+                  </td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="welb" onChange={valueOnChageWeLb} value={this.state.weLbVa}/>
+                  </td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="thlb" onChange={valueOnChageThLb} value={this.state.thLbVa}/>
+                  </td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="frlb" onChange={valueOnChageFrLb} value={this.state.frLbVa}/>
+                  </td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="salb" onChange={valueOnChageSaLb} value={this.state.saLbVa}/>
+                  </td>
+                  <td id="LunchB">
+                    <textarea className="materialize-textarea" name="sulb" onChange={valueOnChageSuLb} value={this.state.suLbVa}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td rowSpan="2">석식</td>
+                  <td>A</td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="moda" onChange={valueOnChageMoDa} value={this.state.moDaVa}/>
+                  </td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="tuda" onChange={valueOnChageTuDa} value={this.state.tuDaVa}/>
+                  </td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="weda" onChange={valueOnChageWeDa} value={this.state.weDaVa}/>
+                  </td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="thda" onChange={valueOnChageThDa} value={this.state.thDaVa}/>
+                  </td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="frda" onChange={valueOnChageFrDa} value={this.state.frDaVa}/>
+                  </td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="sada" onChange={valueOnChageSaDa} value={this.state.saDaVa}/>
+                  </td>
+                  <td id="DinnerA">
+                    <textarea className="materialize-textarea" name="suda" onChange={valueOnChageSuDa} value={this.state.suDaVa}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>B</td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="modb" onChange={valueOnChageMoDb} value={this.state.moDbVa}/>
+                  </td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="tudb" onChange={valueOnChageTuDb} value={this.state.tuDbVa}/>
+                  </td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="wedb" onChange={valueOnChageWeDb} value={this.state.weDbVa}/>
+                  </td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="thdb" onChange={valueOnChageThDb} value={this.state.thDbVa}/>
+                  </td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="frdb" onChange={valueOnChageFrDb} value={this.state.frDbVa}/>
+                  </td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="sadb" onChange={valueOnChageSaDb} value={this.state.saDbVa}/>
+                  </td>
+                  <td id="DinnerB">
+                    <textarea className="materialize-textarea" name="sudb" onChange={valueOnChageSuDb} value={this.state.suDbVa}/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <div className="row">
+            <input className="col s3"type="text" name="pass" placeholder="비밀번호를 입력하세요"/>
+            <button className = "waves-effect waves-light btn"type="submit">저장</button>
+            </div>
+          </form>
       </div>
     );
   }
