@@ -35,6 +35,12 @@ app.use("/read", read);
 app.use('/deleterepo',deleterepo);
 */
 // catch 404 and forward to error handler
+
+app.use(express.static(path.join(__dirname, 'build/build')));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build/build', 'index.html'));
+});
+
 app.use(function(req, res, next) {
   var err = new Error("Not Found");
   err.status = 404;
@@ -63,6 +69,6 @@ app.use(function(err, req, res, next) {
   });
 });
 */
-app.get("/", (req, res) => res.send("Hello world"));
+// app.get("/", (req, res) => res.send("Hello world"));
 
-app.listen(3300, () => console.log("example app listening on port 3300"));
+app.listen(5630, () => console.log("example app listening on port 5630"));

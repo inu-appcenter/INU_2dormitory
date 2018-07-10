@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DomitoryContainer from "container/DomitoryContainer";
+import DomitoryContainer from "../container/DomitoryContainer";
 import AppTemplate from "./AppTemplate";
 
 class App extends Component {

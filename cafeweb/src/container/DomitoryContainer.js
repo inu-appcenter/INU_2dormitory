@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { FormDay} from "component";
+import { FormDay} from "../component";
 import { connect } from "react-redux";
-import * as domitoryAction from "store/modules/domitory";
+import * as domitoryAction from "../store/modules/domitory";
 import axios from "axios";
 
 import { bindActionCreators } from "redux";
-import { DomitoryActions } from "store/actionCreators";
+import { DomitoryActions } from "../store/actionCreators";
 
 class DomitoryContainer extends Component {
   state = {
@@ -137,11 +137,11 @@ class DomitoryContainer extends Component {
     DomitoryActions.startDateHandleChange(setMonDay);
     DomitoryActions.endDateHandleChange(setSunDay);
     DomitoryActions.nextWeekHandle(dateArray);
-    axios.post("http://localhost:5630/read/all",dateArray
+    axios.post("http://117.16.191.242:5630/read/all",dateArray
     ).then(res => {
 
     this.setState({
-      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
+      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU,
       moLaVa : res.data[0].LAMENU, moLbVa : res.data[0].LBMENU,
       moDaVa : res.data[0].DAMENU, moDbVa : res.data[0].DBMENU,
       /////////////////////////////////////////////////////////
@@ -214,7 +214,7 @@ class DomitoryContainer extends Component {
           tueNextDate = "0"+tueNextDate;
         }
         var correctTue = tueYear + "-" + tueMonth + "-" + tueNextDate;
-        
+
 
 
         var nextWenDate = new Date(wenDate);
@@ -290,7 +290,7 @@ class DomitoryContainer extends Component {
           sunNextDate = "0"+sunNextDate;
         }
         var correctSun = sunYear + "-" + sunMonth + "-" + sunNextDate;
-        
+
 
         dateArray.push(correctMon);
         dateArray.push(correctTue);
@@ -302,15 +302,15 @@ class DomitoryContainer extends Component {
         DomitoryActions.startDateHandleChange(correctMon);
         DomitoryActions.endDateHandleChange(correctSun);
         DomitoryActions.nextWeekHandle(dateArray);
-        
-        
-        
-        axios.post("http://localhost:5630/read/all",dateArray
+
+
+
+        axios.post("http://117.16.191.242:5630/read/all",dateArray
     ).then(res => {
     console.log(res.data);
 
     this.setState({
-      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
+      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU,
       moLaVa : res.data[0].LAMENU, moLbVa : res.data[0].LBMENU,
       moDaVa : res.data[0].DAMENU, moDbVa : res.data[0].DBMENU,
       /////////////////////////////////////////////////////////
@@ -342,7 +342,7 @@ class DomitoryContainer extends Component {
   }
 
   subMitHandle = event => {
-    
+
 
     const {dateArray }=this.props
     const mon = dateArray[0],
@@ -420,8 +420,8 @@ class DomitoryContainer extends Component {
         "SUDB" : event.target.sudb.value
       },
     };
-      
-    axios.post("http://localhost:5630/read",sendArray
+
+    axios.post("http://117.16.191.242:5630/read",sendArray
     ).then(res => {
       console.log(res);
       console.log(res.data);
@@ -563,12 +563,12 @@ class DomitoryContainer extends Component {
 
   componentDidMount(){
     const {dateArray} = this.props
-    axios.post("http://localhost:5630/read/all",dateArray
+    axios.post("http://117.16.191.242:5630/read/all",dateArray
     ).then(res => {
     console.log(res.data);
 
     this.setState({
-      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU, 
+      moBaVa : res.data[0].BAMENU, moBbVa : res.data[0].BBMENU,
       moLaVa : res.data[0].LAMENU, moLbVa : res.data[0].LBMENU,
       moDaVa : res.data[0].DAMENU, moDbVa : res.data[0].DBMENU,
       /////////////////////////////////////////////////////////
@@ -611,7 +611,7 @@ class DomitoryContainer extends Component {
 
     return (
       <div className="container">
-        
+
           <h2>음식은 띄어쓰기로 구분해주세요</h2>
           <div className="row">
           <button className="col s2 waves-effect waves-teal btn-flat"onClick={nowWeekHandle}>이번 주 작성하기</button>
@@ -626,7 +626,7 @@ class DomitoryContainer extends Component {
           <p className="col s1">~</p>
           <input
             className="col s3"
-            type="date" 
+            type="date"
             value={endDateValue}
             onChange={endDateHandleChange}
             min={startDateValue}

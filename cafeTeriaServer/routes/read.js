@@ -67,7 +67,8 @@ router.post("/", function(req, res, next) {
   sundayForm.DAMENU = req.body.sunday.SUDA;
   sundayForm.DBMENU = req.body.sunday.SUDB;
 
-  if(req.body.pass === "1q2w3e4r5t"){
+  console.log(req.body)
+  if(req.body.pass === "withappcenter@@"){
   form.find({}, function(err,ans) {
     if(err) throw err;
     if(ans[0] == undefined) {
@@ -187,7 +188,7 @@ router.post("/", function(req, res, next) {
       })
     }
   }).where("DATE").equals(fridayForm.DATE)
-  
+
   form.find({}, function(err,ans) {
     if(err) throw err;
     if(ans[0] == undefined) {
@@ -238,6 +239,112 @@ router.post("/", function(req, res, next) {
 }
 });
 
+
+router.get("/date",function(req,res,next){
+  let queryDate = req.query.date;
+  let yearDate = queryDate.substring(0,4);
+  let monthDate = queryDate.substring(4,6);
+  let dateDate = queryDate.substring(6);
+  const correctQueryDate = yearDate+"-"+monthDate+"-"+dateDate;
+  form.find({},function(err,ans) {
+    if(err) throw err;
+    var sendJsonArray = [];
+    console.log(ans[0].BAMENU);
+    if (ans[0].BAMENU == ""&&ans[0].BBMENU == ""&&ans[0].LAMENU == ""&&ans[0].LBMENU == ""&&ans[0].DAMENU == ""&&ans[0].DBMENU == "") {
+      sendJsonArray = [
+        {
+          MENU: "",
+          TITLE: "점심",
+          order: "0"
+         },
+         {
+          MENU: "",
+          TITLE: "저녁",
+          order: "1"
+         }
+      ]
+
+      res.setHeader('Content-type', 'application/json');
+      res.send(sendJsonArray);
+      res.end();
+    }else{
+
+    var i =0;
+    var orderNum = 0;
+
+    while (i != 5){
+      if(ans[0].BAMENU != ""){
+        let breakA = {
+          MENU : ans[0].BAMENU,
+          TITLE : "아침",
+          order : orderNum
+        }
+        sendJsonArray.push(breakA)
+        i++
+        orderNum++
+      }
+      if(ans[0].BBMENU != ""){
+        let breakB = {
+          MENU : ans[0].BBMENU,
+          TITLE : "아침",
+          order : orderNum
+        }
+        sendJsonArray.push(breakB)
+        i++
+        orderNum++
+      }
+      if(ans[0].LAMENU != ""){
+        let lunchA = {
+          MENU : ans[0].LAMENU,
+          TITLE : "점심",
+          order : orderNum
+        }
+        sendJsonArray.push(lunchA)
+        i++
+        orderNum++
+      }
+      if(ans[0].LBMENU != ""){
+        let lunchB = {
+          MENU : ans[0].LBMENU,
+          TITLE : "점심",
+          order : orderNum
+        }
+        sendJsonArray.push(lunchB)
+        i++
+        orderNum++
+      }
+      if(ans[0].DAMENU != ""){
+        let dinnerA = {
+          MENU : ans[0].DAMENU,
+          TITLE : "저녁",
+          order : orderNum
+        }
+        sendJsonArray.push(dinnerA)
+        i++
+        orderNum++
+      }
+      if(ans[0].DBMENU != ""){
+        let dinnerB = {
+          MENU : ans[0].DBMENU,
+          TITLE : "저녁",
+          order : orderNum
+        }
+        sendJsonArray.push(dinnerB)
+        i=5;
+        orderNum++
+      }else {
+        i=5;
+      }
+    }
+    res.setHeader('Content-type', 'application/json');
+    res.send(sendJsonArray);
+    res.end();
+}
+  }).where("DATE").equals(correctQueryDate)
+})
+
+
+
 router.get("/", function(req, res, next) {
   let today = new Date(),
       todayYear = today.getFullYear(),
@@ -268,15 +375,15 @@ router.get("/", function(req, res, next) {
           order: "1"
          }
       ]
-      
+
       res.setHeader('Content-type', 'application/json');
       res.send(sendJsonArray);
       res.end();
     }else{
 
     var i =0;
-    var orderNum = 0; 
-    
+    var orderNum = 0;
+
     while (i != 5){
       if(ans[0].BAMENU != ""){
         let breakA = {
@@ -346,13 +453,15 @@ router.get("/", function(req, res, next) {
     res.end();
     }
   }).where("DATE").equals(today)
+
+
 });
 
 router.post('/all',async function(req,res,next) {
   let iArray = [0,1,2,3,4,5,6,7];
   let i = 0;
-
-  iArray.map(function(row){ 
+console.log(req.body);
+  iArray.map(function(row){
     if(row<7){
     form.find({},function(err,ans){
       if(err) throw err;
@@ -379,18 +488,17 @@ router.post('/all',async function(req,res,next) {
         }
       }
     }).where("DATE").equals(req.body[row])}
-    else{
-      setTimeout(() => {
-        form.find({$or:[{"DATE":req.body[0]},{"DATE":req.body[1]},{"DATE":req.body[2]},{"DATE":req.body[3]},
-      {"DATE":req.body[4]},{"DATE":req.body[5]},{"DATE":req.body[6]}]},function(err,ans) {
-      if(err) throw err;
-      res.setHeader('Content-type','application/json');
-      res.send(ans);
-      res.end();
-      })
-      }, 250);
-      
-    }
+      else{
+        setTimeout(() => {
+          form.find({$or:[{"DATE":req.body[0]},{"DATE":req.body[1]},{"DATE":req.body[2]},{"DATE":req.body[3]},
+        {"DATE":req.body[4]},{"DATE":req.body[5]},{"DATE":req.body[6]}]},function(err,ans) {
+        if(err) throw err;
+        res.setHeader('Content-type','application/json');
+        res.send(ans);
+        res.end();
+      }).sort({"DATE": 'asc'})
+        }, 250);
+      }
   })
 
 
