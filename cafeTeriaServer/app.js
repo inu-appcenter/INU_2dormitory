@@ -27,15 +27,14 @@ mongoose.connect('mongodb://localhost/testDomitory');
 
 
 
-/*
-app.use('/create',create);
-*/
-app.use("/read", read);
+
+app.use('/create',create)
+app.use("/read", read)
 /*app.use('/upDate',upDate);
 app.use('/deleterepo',deleterepo);
 */
 // catch 404 and forward to error handler
-
+  
 app.use(express.static(path.join(__dirname, 'build/build')));
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'build/build', 'index.html'));
