@@ -11,6 +11,7 @@ router.post("/",async (req,res) => {
     let thuForm = new form()
     let friForm = new form()
     let satForm = new form()
+    let sunForm = new form()
 
     monForm.DATE = req.body.day.monday
     monForm.LunchMenu = req.body.monday.LunchMenu
@@ -35,6 +36,10 @@ router.post("/",async (req,res) => {
     satForm.DATE = req.body.day.satday
     satForm.LunchMenu = req.body.satday.LunchMenu
     satForm.DinnerMenu = req.body.satday.DinnerMenu
+
+    sunForm.DATE = req.body.day.sunday
+    sunForm.LunchMenu = req.body.sunday.LunchMenu
+    sunForm.DinnerMenu = req.body.sunday.DinnerMenu
 
 
 
@@ -179,6 +184,31 @@ router.post("/",async (req,res) => {
             })
         }
         }).where("DATE").equals(satForm.DATE)
+
+        //일요일 입력
+        await form.find({}, function(err,ans) {
+            if(err) throw err;
+            if(ans[0] == undefined) {
+                sunForm.save(function(err){
+                if(err) {
+                    console.error(err);
+                    res.json({result:0});
+                    return;
+                }
+                res.json({result:1})
+                return;
+                })
+            }else{
+                form.update({DATE:satForm.DATE},
+                {$set:{
+                    LunchMenu:sunForm.LunchMenu,
+                    DinnerMenu:sunForm.DinnerMenu}},{multi:true},function(err){
+                if(err) throw err;
+                res.json({result:1})
+                return;
+                })
+            }
+            }).where("DATE").equals(sunForm.DATE)
 })
 
 module.exports = router

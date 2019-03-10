@@ -137,10 +137,10 @@ router.get("/", function(req, res, next) {
 });
 
 router.post('/all',async function(req,res,next) {
-  let iArray = [0,1,2,3,4,5,6];
+  let iArray = [0,1,2,3,4,5,6,7];
   let i = 0;
   iArray.map(function(row){
-    if(row<6){
+    if(row<7){
     form.find({},function(err,ans){
       if(err) throw err;
       else{
@@ -165,7 +165,7 @@ router.post('/all',async function(req,res,next) {
       else{
         setTimeout(() => {
           form.find({$or:[{"DATE":req.body.date[0]},{"DATE":req.body.date[1]},{"DATE":req.body.date[2]},{"DATE":req.body.date[3]},
-        {"DATE":req.body.date[4]},{"DATE":req.body.date[5]}]},function(err,ans) {
+        {"DATE":req.body.date[4]},{"DATE":req.body.date[5]},{"DATE":req.body.date[6]}]},function(err,ans) {
         if(err) throw err;
         res.setHeader('Content-type','application/json');
         res.send(ans);
