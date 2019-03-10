@@ -170,7 +170,6 @@ router.post("/",async (req,res) => {
                 res.json({result:0});
                 return;
             }
-            res.json({result:1})
             return;
             })
         }else{
@@ -179,7 +178,6 @@ router.post("/",async (req,res) => {
                 LunchMenu:satForm.LunchMenu,
                 DinnerMenu:satForm.DinnerMenu}},{multi:true},function(err){
             if(err) throw err;
-            res.json({result:1})
             return;
             })
         }
