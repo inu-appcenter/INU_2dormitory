@@ -4,7 +4,7 @@ const form = require('../model/form')
 
 router.post("/",async (req,res) => {
 
-    
+
     let monForm = new form()
     let tueForm = new form()
     let wenForm = new form()
@@ -14,32 +14,32 @@ router.post("/",async (req,res) => {
     let sunForm = new form()
 
     monForm.DATE = req.body.day.monday
-    monForm.LunchMenu = req.body.monday.LunchMenu
-    monForm.DinnerMenu = req.body.monday.DinnerMenu
+    monForm.LunchMenu = req.body.monday.LunchMenu.replace("<br/>"," ")
+    monForm.DinnerMenu = req.body.monday.DinnerMenu.replace("<br/>"," ")
 
     tueForm.DATE = req.body.day.tueday
-    tueForm.LunchMenu = req.body.tueday.LunchMenu
-    tueForm.DinnerMenu = req.body.tueday.DinnerMenu
+    tueForm.LunchMenu = req.body.tueday.LunchMenu.replace("<br/>"," ")
+    tueForm.DinnerMenu = req.body.tueday.DinnerMenu.replace("<br/>"," ")
 
     wenForm.DATE = req.body.day.wenday
-    wenForm.LunchMenu = req.body.wenday.LunchMenu
-    wenForm.DinnerMenu = req.body.wenday.DinnerMenu
+    wenForm.LunchMenu = req.body.wenday.LunchMenu.replace("<br/>"," ")
+    wenForm.DinnerMenu = req.body.wenday.DinnerMenu.replace("<br/>"," ")
 
     thuForm.DATE = req.body.day.thuday
-    thuForm.LunchMenu = req.body.thuday.LunchMenu
-    thuForm.DinnerMenu = req.body.thuday.DinnerMenu
+    thuForm.LunchMenu = req.body.thuday.LunchMenu.replace("<br/>"," ")
+    thuForm.DinnerMenu = req.body.thuday.DinnerMenu.replace("<br/>"," ")
 
     friForm.DATE = req.body.day.friday
-    friForm.LunchMenu = req.body.friday.LunchMenu
-    friForm.DinnerMenu = req.body.friday.DinnerMenu
+    friForm.LunchMenu = req.body.friday.LunchMenu.replace("<br/>"," ")
+    friForm.DinnerMenu = req.body.friday.DinnerMenu.replace("<br/>"," ")
 
     satForm.DATE = req.body.day.satday
-    satForm.LunchMenu = req.body.satday.LunchMenu
-    satForm.DinnerMenu = req.body.satday.DinnerMenu
+    satForm.LunchMenu = req.body.satday.LunchMenu.replace("<br/>"," ")
+    satForm.DinnerMenu = req.body.satday.DinnerMenu.replace("<br/>"," ")
 
     sunForm.DATE = req.body.day.sunday
-    sunForm.LunchMenu = req.body.sunday.LunchMenu
-    sunForm.DinnerMenu = req.body.sunday.DinnerMenu
+    sunForm.LunchMenu = req.body.sunday.LunchMenu.replace("<br/>"," ")
+    sunForm.DinnerMenu = req.body.sunday.DinnerMenu.replace("<br/>"," ")
 
 
 
@@ -66,7 +66,7 @@ router.post("/",async (req,res) => {
         }
       }).where("DATE").equals(monForm.DATE)
 
-      
+
     //화요일입력
     await form.find({}, function(err,ans) {
     if(err) throw err;
@@ -197,7 +197,7 @@ router.post("/",async (req,res) => {
                 return;
                 })
             }else{
-                form.update({DATE:satForm.DATE},
+                form.update({DATE:sunForm.DATE},
                 {$set:{
                     LunchMenu:sunForm.LunchMenu,
                     DinnerMenu:sunForm.DinnerMenu}},{multi:true},function(err){

@@ -34,10 +34,10 @@ app.use("/read", read)
 app.use('/deleterepo',deleterepo);
 */
 // catch 404 and forward to error handler
-  
-app.use(express.static(path.join(__dirname, 'build/build')));
+
+app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.use(function(req, res, next) {
